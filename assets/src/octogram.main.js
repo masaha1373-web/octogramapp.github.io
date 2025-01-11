@@ -37,6 +37,14 @@ window.addEventListener('load', () => {
       paths: ["/ghi", "/ghissue", "/gh_i", "/gh_issue"],
       url: 'https://github.com/OctoGramApp/OctoGram/issues/new/choose'
     },
+    {
+      paths: ['/translation', '/translate'],
+      url: 'https://crowdin.com/project/octogram'
+    },
+    {
+      paths: ['/website_translate', '/web_translate'],
+      url: 'https://crowdin.com/project/octogram-website'
+    },
   ];
 
   document.body.classList.toggle('disable-blur', isAndroid());

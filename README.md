@@ -2,11 +2,11 @@
 OctoGram is an **unofficial** messaging app that uses **Telegram's API**. This site reflects all the features of the Telegram client.
 
 # 🔗 Website links
-* [Main website](https://octogram.me/)
-* [Main website (features)](https://octogram.me/#features)
-* [Main website (download)](https://octogram.me/#download)
-* [DC Status](https://octogram.me/dcstatus)
-* [404 page](https://octogram.me/404)
+* [Main website](https://octogramapp.github.io/)
+* [Main website (features)](https://octogramapp.github.io/#features)
+* [Main website (download)](https://octogramapp.github.io/#download)
+* [DC Status](https://octogramapp.github.io/dcstatus)
+* [404 page](https://octogramapp.github.io/404)
 
 # 🖼️ Screenshots
 ![Introduction](assets/readme.images/introduction.png)

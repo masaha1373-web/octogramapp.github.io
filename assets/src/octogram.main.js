@@ -102,7 +102,11 @@ window.addEventListener('load', () => {
         case '/privacy.html':
         case '/privacy':
           privacyPolicy.init();
-        break;
+          break;
+        case '/dcterms.html':
+        case '/dcterms':
+          privacyPolicy.init(true);
+          break;
         case '/monet.html':
         case '/monet':
           monet.init();

@@ -114,6 +114,14 @@ function appendLinkContainer(container, id) {
           }
         }
       }));
+      singleLinkContainer.appendChild(generateSingleLink({
+        text: getStringRef('FOOTER_SITE_DCSTATUS_TERMS'),
+        onClick: () => {
+          if (utils.currentPageId !== privacyPolicy.id) {
+            privacyPolicy.init(true);
+          }
+        }
+      }));
       break;
     }
     case 'github': {

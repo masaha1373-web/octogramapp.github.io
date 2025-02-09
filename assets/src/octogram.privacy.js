@@ -7,12 +7,15 @@ import {getStringRef} from "./octogram.translations.js";
 const id = 'privacyPolicy';
 
 let precachedResponse;
+let isDcStatusPolicy = false;
 
-function init() {
+function init(isDcStatus = false) {
+  isDcStatusPolicy = isDcStatus;
+
   clearPage(id);
   window.scrollTo(0, 0);
-  document.title = 'OctoGram - ' + getStringRef('PRIVACYPOLICY_TITLE_PAGE');
-  history.pushState(null, document.title, '/privacy');
+  document.title = 'OctoGram - ' + getStringRef(isDcStatusPolicy ? 'PRIVACYPOLICY_TITLE_PAGE_DCSTATUS' : 'PRIVACYPOLICY_TITLE_PAGE');
+  history.pushState(null, document.title, isDcStatus ? '/dcterms' : '/privacy');
 
   const fakeLoadingCard = generateFakeLoadingCard();
 
@@ -32,13 +35,13 @@ function init() {
 
 function generatePointer() {
   const stickerImage = document.createElement('img');
-  stickerImage.src = 'assets/animations/privacyAnimation.gif';
+  stickerImage.src = 'assets/animations/'+(isDcStatusPolicy ? 'dcStatusPolicy' : 'privacyAnimation')+'.gif';
   const stickerContainer = document.createElement('div');
   stickerContainer.classList.add('sticker');
   stickerContainer.appendChild(stickerImage);
   const messageTitle = document.createElement('div');
   messageTitle.classList.add('title');
-  messageTitle.textContent = getStringRef('PRIVACYPOLICY_TITLE');
+  messageTitle.textContent = getStringRef(isDcStatusPolicy ? 'PRIVACYPOLICY_TITLE_DCSTATUS' : 'PRIVACYPOLICY_TITLE');
 
   const message = document.createElement('div');
   message.classList.add('message');
@@ -92,7 +95,7 @@ function loadPolicy(replaceTo) {
     loadWithResponse(replaceTo, precachedResponse);
   } else {
     const XML = new XMLHttpRequest();
-    XML.open('GET', 'https://raw.githubusercontent.com/OctoGramApp/assets/privacy_policy/privacyPolicy/PrivacyPolicy.xml?cache='+Math.random().toString(), true);
+    XML.open('GET', 'https://raw.githubusercontent.com/OctoGramApp/assets/privacy_policy/privacyPolicy/'+(isDcStatusPolicy ? 'dcStatusPolicy' : 'PrivacyPolicy')+'.xml?cache='+Math.random().toString(), true);
     XML.send();
     XML.addEventListener('readystatechange', (e) => {
       if (e.target.readyState === 4 && e.target.status === 200) {

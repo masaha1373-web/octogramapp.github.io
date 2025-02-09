@@ -51,6 +51,7 @@ const TRANSLATIONS_REF = {
   FOOTER_SITE_CHANGELOG: 'Changelog',
   FOOTER_SITE_MONET: 'Discover Adaptive Theme',
   FOOTER_SITE_PRIVACYPOLICY: 'Privacy Policy',
+  FOOTER_SITE_DCSTATUS_TERMS: 'DC Status Terms',
   FOOTER_GITHUB_TITLE: 'GitHub links',
   FOOTER_GITHUB_CLIENT_SOURCE: 'Client source',
   FOOTER_GITHUB_CLIENT_LICENSE: 'Client license',
@@ -119,7 +120,9 @@ const TRANSLATIONS_REF = {
   ERROR_BUTTON: 'I am an octopus',
 
   PRIVACYPOLICY_TITLE: 'Find out how we save and process your personal data',
+  PRIVACYPOLICY_TITLE_DCSTATUS: 'Find out how we process datacenter status results',
   PRIVACYPOLICY_TITLE_PAGE: 'Privacy Policy',
+  PRIVACYPOLICY_TITLE_PAGE_DCSTATUS: 'DC Status Terms',
   PRIVACYPOLICY_LOADING: 'Loading policy...',
 };
 

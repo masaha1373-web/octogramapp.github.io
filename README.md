@@ -15,7 +15,7 @@ OctoGram is an **unofficial** messaging app that uses **Telegram's API**. This s
 
 # 💕 References
 ## 🟦 Colors
-The colours of the site are all obtained through the client's default 'dark' theme. Other colour references can be found in the [octogram.config.css](https://github.com/OctoGramApp/Website/blob/main/assets/styles/octogram.config.css) file.
+The colours of the site are all obtained through the client's default 'dark' theme. Other colour references can be found in the [octogram.config.css](https://github.com/OctoGramApp/octogramapp.github.io/blob/main/assets/styles/octogram.config.css) file.
 ## ⬇️ Download links
 * Universal APK: https://github.com/OctoGramApp/OctoGram/releases/download/%23stable/Universal.apk
 * ARM64 APK: https://github.com/OctoGramApp/OctoGram/releases/download/%23stable/arm64.apk

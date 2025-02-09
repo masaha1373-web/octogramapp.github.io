@@ -28,7 +28,7 @@ function createElement() {
   appendLinkContainer(linksContainer, 'telegram');
 
   const footerTextFork = document.createElement('a');
-  footerTextFork.href = 'https://github.com/OctoGramApp/Website/fork';
+  footerTextFork.href = 'https://github.com/OctoGramApp/octogramapp.github.io/fork';
   footerTextFork.target = '_blank';
   footerTextFork.textContent = getStringRef('FOOTER_TEXT_1');
   const footerText = document.createElement('div');
@@ -135,17 +135,17 @@ function appendLinkContainer(container, id) {
       }));
       singleLinkContainer.appendChild(generateSingleLink({
         text: getStringRef('FOOTER_GITHUB_CLIENT_LICENSE'),
-        url: 'https://github.com/OctoGramApp/OctoGram/blob/develop/LICENSE',
+        url: 'https://github.com/OctoGramApp/OctoGram/blob/main/LICENSE',
         openOnBlank: true
       }));
       singleLinkContainer.appendChild(generateSingleLink({
         text: getStringRef('FOOTER_GITHUB_WEBSITE_SOURCE'),
-        url: 'https://github.com/OctoGramApp/Website',
+        url: 'https://github.com/OctoGramApp/octogramapp.github.io',
         openOnBlank: true
       }));
       singleLinkContainer.appendChild(generateSingleLink({
         text: getStringRef('FOOTER_GITHUB_WEBSITE_LICENSE'),
-        url: 'https://github.com/OctoGramApp/Website/blob/main/LICENSE',
+        url: 'https://github.com/OctoGramApp/octogramapp.github.io/blob/main/LICENSE',
         openOnBlank: true
       }));
       break;

@@ -1,7 +1,7 @@
 let cachedTranslations = {};
 
 const AVAILABLE_LANGUAGES = [
-  'en', 'it', 'id', 'es'
+  'en', 'it', 'id', 'es', 'pl'
 ];
 
 const TRANSLATIONS_REF = {
@@ -12,7 +12,7 @@ const TRANSLATIONS_REF = {
   HEADER_DC_STATUS: 'DC Status',
   HEADER_SOURCE: 'Source',
 
-  INTRODUCTION_PLACEHOLDER: 'Are we ready for 2.0.0?',
+  INTRODUCTION_PLACEHOLDER: 'Are we ready for 3.0.0?',
   INTRODUCTION_DISCOVER: 'Discover {0}',
   INTRODUCTION_DISCOVER_DESCRIPTION: 'The open-source alternative Telegram client with all the features you\'ve always wanted.',
   FEATURES_TITLE: '{0}\'s features',

@@ -560,7 +560,7 @@ body > .page > .card .content .identifydc {
 }
 
 body > .page > .card .content .identifydc.animate:not(.available) {
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.3);
   animation: 0.4s animateIdentifyDc cubic-bezier(0.42, 0, 0, 1) forwards;
 }
 
@@ -580,7 +580,7 @@ body > .page > .card .content .identifydc.animate:not(.available) {
 }
 
 body > .page > .card .content .identifydc.animate.available {
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.3);
   animation: 0.4s animateIdentifyDcAvailable cubic-bezier(0.42, 0, 0, 1) forwards;
 }
 
@@ -591,7 +591,7 @@ body > .page > .card .content .identifydc.animate.available {
 }
 
 body > .page > .card .content .identifydc.closing {
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.3);
   animation: 0.4s animateIdentifyDc cubic-bezier(0.11, 0.8, 0, 0.99) reverse forwards;
 }
 
@@ -599,7 +599,7 @@ body > .page > .card .content .identifydc.visible {
   height: 245px;
   width: 100%;
   transform: none;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.3);
   margin-top: 20px;
 }
 

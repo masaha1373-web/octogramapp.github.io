@@ -10,10 +10,6 @@ body > .page > .header {
   z-index: 6;
 }
 
-body > .page > .header.as-error {
-  background: #0b1015;
-}
-
 body > .page > .header .content {
   height: 100%;
   width: 100%;

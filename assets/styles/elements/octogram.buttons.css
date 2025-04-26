@@ -5,9 +5,28 @@ body > .page .button {
   border-radius: 15px;
   padding: 10px 18px;
   text-align: center;
-  overflow: hidden;
   box-sizing: border-box;
-  transition: 0.4s opacity;
+  transition: 0.4s opacity, 0.4s background;
+}
+
+body > .page .button:not(.enabled) {
+  overflow: hidden;
+}
+
+body > .page .button.enabled {
+  pointer-events: none;
+}
+
+body > .page .button.enabled::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 50%;
+  height: 2px;
+  transform: translateX(-50%);
+  background: #FFFFFF;
+  border-radius: 10px;
 }
 
 body > .page .button.has-background {
@@ -39,46 +58,12 @@ body a.button {
   text-decoration: none;
 }
 
-body > .page .button::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(255, 255, 255, 0.1);
-  z-index: 0;
-  opacity: 0;
-  transition: 0.4s opacity;
+body > .page .button:hover {
+  background: rgba(255, 255, 255, 0.1);
 }
 
-body > .page .button:hover::before {
-  opacity: 100%;
-}
-
-body > .page .button::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translateX(-50%) translateY(-50%);
-  width: 100%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.05);
-  clip-path: circle(0%);
-}
-
-body > .page .button:active::after {
-  animation: 0.4s applyRipple forwards;
-}
-
-@keyframes applyRipple {
-  from {
-    clip-path: circle(0%);
-  }
-  to {
-    clip-path: circle(100%);
-  }
+body > .page .button:active {
+  background: rgba(255, 255, 255, 0.2);
 }
 
 body > .page .button .text {

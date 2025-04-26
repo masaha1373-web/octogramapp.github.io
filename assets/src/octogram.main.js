@@ -1,7 +1,4 @@
-import {
-  composeUrlBeta,
-  isAndroid
-} from "./octogram.utils.js";
+import {isAndroid} from "./octogram.utils.js";
 import * as translations from "./octogram.translations.js";
 import * as parallaxHelper from "./octogram.parallax.js";
 import * as changelog from "./octogram.changelog.js";
@@ -13,16 +10,12 @@ import * as errorPage from "./octogram.errorpage.js";
 window.addEventListener('load', () => {
   const REDIRECT_URIS = [
     {
-      paths: ['/appcenter_beta', '/appcenter-beta', '/acbeta', '/beta'],
-      url: composeUrlBeta('octogram-beta')
-    },
-    {
-      paths: ['/appcenter_stable', '/appcenter-stable', '/ac', '/acstable', '/stable'],
-      url: composeUrlBeta('octogram')
-    },
-    {
       paths: ['/apkpure'],
       url: 'https://apkpure.com/octogram/it.octogram.android'
+    },
+    {
+      paths: ['/playstore', '/ps', '/google'],
+      url: 'https://play.google.com/store/apps/details?id=it.octogram.android'
     },
     {
       paths: ['/telegram', '/tg'],

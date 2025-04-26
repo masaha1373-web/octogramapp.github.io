@@ -1,6 +1,6 @@
 body > .page .select {
   width: 100%;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.3);
   color: #FFFFFF;
   padding-inline: 17px;
   padding-block: 15px;
@@ -66,7 +66,7 @@ body > .page > .select-overflow.closing {
 
 @keyframes animateBackgroundRev {
   from {
-    background: rgba(27, 22, 34, 0.8);
+    background: rgba(27, 22, 34, 0.6);
   }
 }
 

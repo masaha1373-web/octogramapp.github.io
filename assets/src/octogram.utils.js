@@ -307,14 +307,6 @@ function formatDateUnit(unit) {
   }
 }
 
-function composeUrlBeta(appName) {
-  let myUrl = 'https://install.appcenter.ms';
-  myUrl += '/orgs/octogramapp/apps/';
-  myUrl += appName;
-  myUrl += '/distribution_groups/app';
-  return myUrl;
-}
-
 function clearPage(pageId, onDestroyCallback) {
   if (typeof currentPageOnDestroyCallback != 'undefined') {
     try {
@@ -361,7 +353,6 @@ export {
   calculateSize,
   getEmojiByIso2,
   formatDate,
-  composeUrlBeta,
   clearPage,
   generateRandomEncrScript
 };

@@ -55,21 +55,21 @@ body > .page.js-error {
     display: none;
 }
 
-body::-webkit-scrollbar {
+body > .page::-webkit-scrollbar {
 	width: 5px;
 }
 
-body::-webkit-scrollbar-track {
+body > .page::-webkit-scrollbar-track {
 	background: transparent;
 }
 
-body::-webkit-scrollbar-thumb {
+body > .page::-webkit-scrollbar-thumb {
 	background: transparent;
 	transition: 0.4s background;
 }
 
-:root:hover body::-webkit-scrollbar-thumb {
-	background: #666666a1;
+:root:hover body > .page::-webkit-scrollbar-thumb {
+	background: #5348c3;
 	border-radius: 10px;
 }
 

@@ -34,8 +34,6 @@ function createElement() {
   footerText.classList.add('text');
   footerText.textContent = 'Octogram © ' + new Date().getFullYear().toString() + ' - ';
   footerText.appendChild(footerTextFork);
-  footerText.appendChild(document.createElement('br'));
-  footerText.appendChild(getTextNodeByStringRef('FOOTER_TEXT_2'));
 
   const footerContainer = document.createElement('div');
   footerContainer.classList.add('footer', 'big');
@@ -64,24 +62,6 @@ function appendLinkContainer(container, id) {
         getStringRef('FOOTER_SITE_TITLE')
       ));
       singleLinkContainer.appendChild(generateSingleLink({
-        text: getStringRef('FOOTER_SITE_FEATURES'),
-        onClick: () => {
-          if (utils.currentPageId !== homePage.id) {
-            homePage.init();
-          }
-          window.location.href = '#features';
-        }
-      }));
-      singleLinkContainer.appendChild(generateSingleLink({
-        text: getStringRef('FOOTER_SITE_DOWNLOAD'),
-        onClick: () => {
-          if (utils.currentPageId !== homePage.id) {
-            homePage.init();
-          }
-          window.location.href = '#download';
-        }
-      }));
-      singleLinkContainer.appendChild(generateSingleLink({
         text: getStringRef('FOOTER_SITE_DC_STATUS'),
         onClick: () => {
           if (utils.currentPageId !== dcStatus.id) {
@@ -95,11 +75,6 @@ function appendLinkContainer(container, id) {
           if (utils.currentPageId !== changelog.id) {
             changelog.init();
           }
-        }
-      }));
-      singleLinkContainer.appendChild(generateSingleLink({
-        text: getStringRef('FOOTER_SITE_MONET'),
-        onClick: () => {
         }
       }));
       singleLinkContainer.appendChild(generateSingleLink({

@@ -1,17 +1,18 @@
-import {calculateSize, clearPage, generateRandomEncrScript} from "./octogram.utils.js";
+import {calculateSize, clearPage} from "./octogram.utils.js";
 import * as header from "./octogram.header.js";
 import {getStringRef} from "./octogram.translations.js";
 import * as footer from "./octogram.footer.js";
 import * as changelog from "./octogram.changelog.js";
+import * as privacyPolicy from "./octogram.privacy.js";
 
 const id = 'homePage';
 
 let precachedResponse;
 let downloadContent;
 let downloadFiles;
-let currentInterval;
 
 let killedStarsAnimation = false;
+let downloadsViewElement;
 
 class Star {
   #ctx;
@@ -69,7 +70,7 @@ function init() {
     isHomePage: true
   }));
   pageContainer.appendChild(generateIntroduction());
-  pageContainer.appendChild(generateDownload());
+  pageContainer.appendChild(downloadsViewElement = generateDownload());
   pageContainer.appendChild(footer.createElement());
 
   document.body.appendChild(pageContainer);
@@ -78,9 +79,6 @@ function init() {
 }
 
 function destroy() {
-  if (typeof currentInterval != 'undefined') {
-    clearInterval(currentInterval);
-  }
   killedStarsAnimation = true;
 }
 
@@ -108,16 +106,24 @@ function generateIntroduction() {
   actions.className = 'actions';
 
   const links = [
-    { id: 1, href: '/features.html', text: 'Features' },
-    { id: 2, href: '/news.html', text: 'News' },
-    { id: 3, href: '/downloads.html', text: 'Downloads' },
+    { id: 1, text: 'Privacy Policy' },
+    { id: 2, text: 'News' },
+    { id: 3, text: 'Downloads' },
   ];
 
   links.forEach(linkData => {
     const link = document.createElement('a');
     link.classList.add('button', 'has-background');
     link.style.setProperty('--id', linkData.id);
-    link.href = linkData.href;
+    link.addEventListener('click', () => {
+      if (linkData.id === 1) {
+        privacyPolicy.init();
+      } else if (linkData.id === 2) {
+        changelog.init();
+      } else if (linkData.id === 3) {
+        downloadsViewElement.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
     link.textContent = linkData.text;
     actions.appendChild(link);
   });
@@ -231,14 +237,10 @@ function generateDownload() {
   downloadContainer.classList.add('download');
   downloadContainer.appendChild(content);
 
-  const downloadSection = document.createElement('section');
-  downloadSection.id = 'download';
-  downloadSection.appendChild(downloadContainer);
-
   downloadContent = content;
   downloadFiles = files;
 
-  return downloadSection;
+  return downloadContainer;
 }
 
 function appendStores(stores) {

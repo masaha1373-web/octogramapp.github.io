@@ -157,9 +157,11 @@ function parseCustomSelectMenu({
       optionsFragment.append(option);
     }
 
-    const selectAnimation = document.createElement('img');
+    const selectAnimation = document.createElement('lottie-player');
     selectAnimation.classList.add('animation');
-    selectAnimation.src = '/assets/animations/bornAnimation.gif';
+    selectAnimation.toggleAttribute('loop');
+    selectAnimation.toggleAttribute('autoplay');
+    selectAnimation.src = '/assets/animations/_073_GEEKBOT.json';
 
     const selectButton = document.createElement('div');
     selectButton.classList.add('button', 'big', 'accent');
@@ -320,7 +322,16 @@ function clearPage(pageId, onDestroyCallback) {
     } catch(e) {}
   }
 
-  document.body.innerHTML = '';
+  if (document.body.querySelector('.splash')) {
+    const children = document.body.childNodes;
+    for (const child of children) {
+      if (!child || !child.classList || !child.classList.contains('splash')) {
+        child.remove();
+      }
+    }
+  } else {
+    document.body.innerHTML = '';
+  }
   currentPageId = pageId;
   currentPageOnDestroyCallback = onDestroyCallback;
   

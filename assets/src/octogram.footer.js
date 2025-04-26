@@ -2,7 +2,6 @@ import * as homePage from "./octogram.home.js";
 import * as utils from "./octogram.utils.js";
 import {getStringRef, getTextNodeByStringRef} from "./octogram.translations.js";
 import * as privacyPolicy from "./octogram.privacy.js";
-import * as monet from "./octogram.monet.js";
 import * as changelog from "./octogram.changelog.js";
 import * as dcStatus from "./octogram.dcstatus.js";
 
@@ -101,9 +100,6 @@ function appendLinkContainer(container, id) {
       singleLinkContainer.appendChild(generateSingleLink({
         text: getStringRef('FOOTER_SITE_MONET'),
         onClick: () => {
-          if (utils.currentPageId !== monet.id) {
-            monet.init();
-          }
         }
       }));
       singleLinkContainer.appendChild(generateSingleLink({

@@ -34,8 +34,10 @@ function init(isDcStatus = false) {
 }
 
 function generatePointer() {
-  const stickerImage = document.createElement('img');
-  stickerImage.src = 'assets/animations/'+(isDcStatusPolicy ? 'dcStatusPolicy' : 'privacyAnimation')+'.gif';
+  const stickerImage = document.createElement('lottie-player');
+  stickerImage.toggleAttribute('loop');
+  stickerImage.toggleAttribute('autoplay');
+  stickerImage.src = 'assets/animations/'+(isDcStatusPolicy ? '_049_MAP_OUT' : '_078_FOLDER_OUT')+'.json';
   const stickerContainer = document.createElement('div');
   stickerContainer.classList.add('sticker');
   stickerContainer.appendChild(stickerImage);

@@ -1,30 +1,7 @@
 body > .page > .introduction {
-  height: 100vh;
-  background: #1d2733;
-  margin-bottom: 40px;
-  min-height: 800px;
-  box-sizing: border-box;
-  overflow: hidden;
+  height: calc(100vh - 60px);
   width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   position: relative;
-  transform: translateY(-60px);
-  z-index: -1;
-}
-
-body > .page > .introduction::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 50px;
-  background: linear-gradient(
-    transparent,
-    #0b1015
-  );
 }
 
 body > .page > .introduction .background {
@@ -33,187 +10,84 @@ body > .page > .introduction .background {
   left: 0;
   width: 100%;
   height: 100%;
-  background: #000000;
-  filter: blur(5px);
+  overflow: hidden;
+  background-color: #4062bb;
+  background-image: linear-gradient(316deg, #11091e 0%, #12013c 74%);
 }
 
-body > .page > .introduction .background .animator {
-  width: 100%;
-  height: 100%;
-  background: #6a7ed5;
-  mask-image: url("/assets/images/pattern.svg");
-  -webkit-mask-image: url("/assets/images/pattern.svg");
-  opacity: 0.05;
-  transition: 0.4s opacity;
+body > .page > .introduction .background svg {
+  position: absolute;
+  left: 0;
+  transform: scaleY(0.5) translateY(50%);
 }
 
-body > .page > .introduction .background.enhance .animator {
-  opacity: 0.3;
+body > .page > .introduction .background svg.top-1 {
+  top: 0;
+  transform: scaleY(0.5) translateY(-70%) rotate(180deg);
 }
 
-body > .page > .introduction .stack {
+body > .page > .introduction .background svg:not(.top-1) {
+  bottom: 0;
+}
+
+body > .page > .introduction .content {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: url("/assets/images/stackbg.png");
-  background-position: 70%;
-  background-size: cover;
-  opacity: 0.3;
-  filter: hue-rotate(36deg) blur(12px);
-  transform: translateX(100%);
-  transition: 0.4s transform;
-}
-
-body > .page > .introduction .stack.visible {
-  transform: translateX(0);
-}
-
-body > .page > .introduction .temporary-placeholder .message {
-  display: flex;
-  align-items: end;
-  justify-content: center;
-}
-
-body > .page > .introduction .temporary-placeholder .message.animate {
-  animation: var(--duration) animateMessage forwards;
-}
-
-@keyframes animateMessage {
-  from {
-    transform: scale(1);
-  }
-  to {
-    transform: scale(var(--multiplier));
-  }
-}
-
-body > .page > .introduction .temporary-placeholder .message.disappear {
-  animation: 0.4s disappearMessage forwards;
-}
-
-@keyframes disappearMessage {
-  from {
-    transform: scale(var(--multiplier));
-  }
-  to {
-    transform: scale(var(--multiplier)) translateY(-100%);
-    opacity: 0;
-  }
-}
-
-body > .page > .introduction .temporary-placeholder .message .image {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  transform: translateY(-4px);
-}
-
-body > .page > .introduction .temporary-placeholder .message .message-bubble {
-  display: flex;
-  align-items: end;
-  justify-content: center;
-}
-
-body > .page > .introduction .temporary-placeholder .message .message-bubble .shrin img {
-  transform: translateY(3px);
-}
-
-body > .page > .introduction .temporary-placeholder .message .message-bubble > div:not(.shrin) {
-  background: white;
-  padding: 13px;
-  padding-inline-end: 46px;
-  border-radius: 15px;
-  border-bottom-left-radius: 0;
-}
-
-body > .page > .introduction .temporary-placeholder .message .message-bubble > div:not(.shrin) .user-name {
-  font-weight: 500;
-  color: #e75a60;
-}
-
-body > .page > .introduction .content {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-}
-
-body > .page > .introduction .content .message {
-  max-width: 700px;
   z-index: 1;
-  transform: translateY(2em);
-  opacity: 0;
-  padding: 37px;
-  border-radius: 10px;
-  box-sizing: border-box;
-  animation: 0.5s showMessage 0.1s forwards;
 }
 
-body.disable-blur > .page > .introduction .content .message {
-  background: rgba(0, 0, 0, 0.9);
+body > .page > .introduction .content .app-banner {
+  width: 30vw;
+  position: relative;
 }
 
-@media screen and (max-width: 700px) {
-  body > .page > .introduction .content .message {
-    max-width: min(93vw, 700px);
-  }
+body > .page > .introduction .content .app-banner canvas {
+  width: 100%;
+  height: 100%;
 }
 
-@keyframes showMessage {
-  to {
-    transform: none;
-    opacity: 1;
-  }
-}
-
-body > .page > .introduction .content .message .title {
-  color: #FFFFFF;
-  font-size: 4em;
-  font-weight: 800;
-  text-align: center;
-  margin-bottom: 15px;
-}
-
-body > .page > .introduction .content .message .title .appname {
-  color: #6a7ed6;
-}
-
-body > .page > .introduction .content .message .description {
-  color: #FFFFFF;
-  font-size: 1.8em;
-  text-align: center;
-}
-
-@media screen and (max-width: 700px) {
-  body > .page > .introduction .content .message .title {
-    font-size: 3.5em;
-    text-align: center;
-  }
-
-  body > .page > .introduction .content .message .description {
-    font-size: 1.3em;
-    text-align: center;
-  }
-}
-
-body > .page > .introduction .scrolling {
-  filter: invert(1);
+body > .page > .introduction .content .app-banner .app-logo {
   position: absolute;
-  bottom: 80px;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%) rotate(90deg);
-  height: 30px;
-  width: 30px;
-  animation: 1.6s moveBottom infinite;
+  transform: translateX(-50%) translateY(-50%);
+  background: #3d358b;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  padding: 1.5vw;
 }
 
-@keyframes moveBottom {
-  from, to {
-    transform: translateX(-50%) rotate(90deg) translateX(0px);
-  }
-  50% {
-    transform: translateX(-50%) rotate(90deg) translateX(50px);
-  }
+body > .page > .introduction .content .app-banner .app-logo img {
+  height: 25vh;
+  aspect-ratio: 1 / 1;
+  filter: invert(1);
+}
+
+body > .page > .introduction .content .app-name {
+  font-size: 2.8em;
+  font-weight: 600;
+  color: white;
+  margin-top: 15px;
+}
+
+body > .page > .introduction .content .app-description {
+  font-size: 1.3em;
+  max-width: 25vw;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+body > .page > .introduction .content .actions {
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
 }

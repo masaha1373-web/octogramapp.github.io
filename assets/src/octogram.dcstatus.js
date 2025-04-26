@@ -9,18 +9,6 @@ import {clearPage, formatDate, getEmojiByIso2, parseCustomSelectMenu} from "./oc
 
 const id = 'dcStatus';
 
-const CANVAS_DRAWDCSTATE = [
-  { x: 36.6 },
-  { x: 412.4 },
-  { x: 784.8 },
-  { x: 1157.3 },
-  { x: 1529.9 },
-];
-const CANVAS_CONTAINERWIDTH = 356.8;
-const CANVAS_BADGEWIDTH = 270;
-const CANVAS_BADGEHEIGHT = 60;
-const CANVAS_BADGEY = 605.3;
-
 const DATACENTER_COUNT = 5;
 let currentTimeout;
 let currentInterval;
@@ -51,7 +39,6 @@ function init() {
   pageContainer.appendChild(generatePointer());
   pageContainer.appendChild(generateServerContainer());
   pageContainer.appendChild(generateIdentifyDcContainer());
-  pageContainer.appendChild(generateExportContainer());
   pageContainer.appendChild(footer.createElement());
 
   document.body.appendChild(pageContainer);
@@ -72,8 +59,10 @@ function destroy() {
 }
 
 function generatePointer() {
-  const stickerImage = document.createElement('img');
-  stickerImage.src = 'assets/animations/dcstatusAnimation.gif';
+  const stickerImage = document.createElement('lottie-player');
+  stickerImage.toggleAttribute('loop');
+  stickerImage.toggleAttribute('autoplay');
+  stickerImage.src = 'assets/animations/_028_SCREEN_OUT.json';
   const stickerContainer = document.createElement('div');
   stickerContainer.classList.add('sticker');
   stickerContainer.appendChild(stickerImage);
@@ -800,149 +789,6 @@ function clearUnavailableSlots() {
 
   availableSlots = availableSlots.filter((x) => typeof x != 'undefined');
   // workaround
-}
-
-function generateExportImage() {
-  alert(getStringRef('DCSTATUS_EXPORT_ALERT'));
-
-  availableSlots.push({
-    callback: (data) => {
-      clearUnavailableSlots();
-
-      let finalFile = '/assets/images/dcexpbase.png';
-      if (data.some((x) => x.dc_status === 0)) {
-        finalFile = '/assets/images/dcexpbase_downtime.png';
-      } else if (data.some((x) => x.dc_status === 2)) {
-        finalFile = '/assets/images/dcexpbase_slow.png';
-      }
-
-      const bgImage = new Image();
-      bgImage.src = finalFile;
-      bgImage.addEventListener('load', () => {
-        const canvas = document.createElement('canvas');
-        canvas.width = 1920;
-        canvas.height = 1080;
-
-        const context = canvas.getContext('2d');
-        context.drawImage(bgImage, 0, 0);
-
-        for (const datacenter of data) {
-          drawDcStateOnCanvas(context, datacenter);
-        }
-
-        const mostRecentDowntime = data.sort((a, b) => b.last_down - a.last_down)[0].last_down;
-        const mostRecentLagtime = data.sort((a, b) => b.last_lag - a.last_lag)[0].last_lag;
-
-        context.textAlign = 'left';
-        context.textBaseline = 'top';
-        context.fillStyle = "rgb(255, 255, 255)";
-
-        if (mostRecentDowntime && mostRecentDowntime > 0) {
-          context.font = '60px Rubik';
-          context.fillText(formatDate(mostRecentDowntime, 'dd/mm'), 1082, 901.2);
-          context.font = '40px Rubik';
-          context.fillText(formatDate(mostRecentDowntime, 'HH:ii'), 1082, 965.2);
-        } else {
-          context.fillText("Unknown", 1082, 901.2);
-        }
-
-        if (mostRecentLagtime && mostRecentLagtime > 0) {
-          context.font = '60px Rubik';
-          context.fillText(formatDate(mostRecentLagtime, 'dd/mm'), 1508.5, 901.2);
-          context.font = '40px Rubik';
-          context.fillText(formatDate(mostRecentLagtime, 'HH:ii'), 1508.5, 965.2);
-        } else {
-          context.fillText("Unknown", 1508.5, 901.2);
-        }
-
-        const fakeLink = document.createElement('a');
-        fakeLink.setAttribute('download', 'export.png');
-        fakeLink.setAttribute('href', canvas.toDataURL());
-        document.body.appendChild(fakeLink);
-        fakeLink.click();
-        fakeLink.remove();
-      });
-      bgImage.addEventListener('error', () => {
-        alert(getStringRef('DCSTATUS_EXPORT_ERROR'));
-      });
-    }
-  });
-
-  executeForceReload(true);
-}
-
-function drawDcStateOnCanvas(context, datacenter) {
-  const drawState = CANVAS_DRAWDCSTATE[datacenter.dc_id - 1];
-  if (!drawState) {
-    return;
-  }
-
-  context.beginPath();
-
-  drawPathOnContext(
-    context,
-    drawState.x + CANVAS_CONTAINERWIDTH / 2 - CANVAS_BADGEWIDTH / 2,
-    CANVAS_BADGEY,
-    CANVAS_BADGEWIDTH,// width
-    CANVAS_BADGEHEIGHT, // height
-    30, // borderRadius
-  );
-
-  let statusText, accentColor;
-  switch (datacenter.dc_status) {
-    case 0:
-      accentColor = [194, 98, 102];
-      statusText = 'OFFLINE';
-      break;
-    case 1:
-      accentColor = [105, 184, 114];
-      statusText = 'ONLINE';
-      break;
-    case 2:
-      accentColor = [224, 189, 37];
-      statusText = 'SLOW';
-      break;
-    default:
-      return;
-  }
-
-  context.fillStyle = "rgba(" + accentColor.join(', ') + ", 0.2)";
-  context.fill();
-
-  context.textAlign = 'center';
-  context.textBaseline = 'middle';
-  context.font = ' bold 30px Rubik';
-  context.fillStyle = "rgb(" + accentColor.join(', ') + ")";
-  context.fillText(
-    statusText,
-    drawState.x + CANVAS_CONTAINERWIDTH / 2,
-    CANVAS_BADGEY + CANVAS_BADGEHEIGHT / 2,
-  );
-
-  if (datacenter.dc_status === 1) {
-    context.textAlign = 'right';
-    context.textBaseline = 'middle';
-    context.font = '20px Rubik';
-    context.fillStyle = "rgb(255, 255, 255)";
-    context.fillText(
-      datacenter.ping + 'ms',
-      drawState.x + CANVAS_CONTAINERWIDTH - 60,
-      CANVAS_BADGEY + CANVAS_BADGEHEIGHT,
-    );
-  }
-}
-
-function drawPathOnContext(context, x, y, width, height, borderRadius) {
-  context.moveTo(x + borderRadius, y);
-  context.lineTo(x + width - borderRadius, y);
-  context.arc(x + width - borderRadius, y + borderRadius, borderRadius, -Math.PI / 2, 0);
-  context.lineTo(x + width, y + height - borderRadius);
-  context.arc(x + width - borderRadius, y + height - borderRadius, borderRadius, 0, Math.PI / 2);
-  context.lineTo(x + borderRadius, y + height);
-  context.arc(x + borderRadius, y + height - borderRadius, borderRadius, Math.PI / 2, Math.PI);
-  context.lineTo(x, y + borderRadius);
-  context.arc(x + borderRadius, y + borderRadius, borderRadius, Math.PI, -Math.PI / 2);
-  context.closePath();
 }
 
 export {

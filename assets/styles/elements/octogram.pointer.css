@@ -1,7 +1,6 @@
 body > .page > .pointer {
-  background: #13171e;
-  padding-block: 20px;
-  padding-bottom: calc(20px + 50px);
+  background: #11091e;
+  padding-block: 60px;
   margin-bottom: 40px;
   box-sizing: border-box;
   overflow: hidden;
@@ -12,6 +11,16 @@ body > .page > .pointer {
   position: relative;
 }
 
+body > .page > .pointer::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 50px;
+  background: linear-gradient(#0f031e, #11091e);
+}
+
 body > .page > .pointer::after {
   content: "";
   position: absolute;
@@ -19,10 +28,7 @@ body > .page > .pointer::after {
   bottom: 0;
   width: 100%;
   height: 50px;
-  background: linear-gradient(
-    #13171e,
-    #0b1015
-  );
+  background: linear-gradient(#11091e, #0f031e);
 }
 
 body > .page > .pointer {
@@ -36,13 +42,14 @@ body > .page > .pointer .message {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  gap: 10px;
+  gap: 20px;
   max-width: min(500px, 87vw);
 }
 
-body > .page > .pointer .message .sticker img {
-  height: 200px;
-  width: 200px;
+body > .page > .pointer .message .sticker img,
+body > .page > .pointer .message .sticker lottie-player {
+  height: 150px;
+  width: 150px;
 }
 
 body > .page > .pointer .message .title {

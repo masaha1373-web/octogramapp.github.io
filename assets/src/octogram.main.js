@@ -7,7 +7,6 @@ import * as parallaxHelper from "./octogram.parallax.js";
 import * as changelog from "./octogram.changelog.js";
 import * as dcStatus from "./octogram.dcstatus.js";
 import * as privacyPolicy from "./octogram.privacy.js";
-import * as monet from "./octogram.monet.js";
 import * as homePage from "./octogram.home.js";
 import * as errorPage from "./octogram.errorpage.js";
 
@@ -86,7 +85,8 @@ window.addEventListener('load', () => {
         }
       }
     } else {
-      splashScreen.remove();
+      splashScreen.classList.add('disappear');
+      splashScreen.addEventListener('transitionend', () => splashScreen.remove(), { once: true });
       parallaxHelper.init();
 
       switch(window.location.pathname) {
@@ -107,10 +107,6 @@ window.addEventListener('load', () => {
         case '/dcterms':
           privacyPolicy.init(true);
           break;
-        case '/monet.html':
-        case '/monet':
-          monet.init();
-        break;
         case '/':
           homePage.init();
         break;

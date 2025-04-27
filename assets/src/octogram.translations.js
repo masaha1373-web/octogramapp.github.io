@@ -67,12 +67,12 @@ const TRANSLATIONS_REF = {
   CHANGELOG_DOWNLOAD_SELECT: 'Select your option',
   CHANGELOG_DOWNLOAD_BUTTON: 'Download',
 
-  DOWNLOAD_TITLE: 'Are you ready?',
-  DOWNLOAD_DESCRIPTION: 'Choose your version',
+  DOWNLOAD_TITLE: 'The experience begins',
+  DOWNLOAD_DESCRIPTION: 'Download the Direct version to get direct updates from the OctoGram team.',
   DOWNLOAD_STORES: 'Check other app stores:',
   DOWNLOAD_AVAILABLE: 'Press to open',
   DOWNLOAD_UNAVAILABLE: 'Currently unavailable',
-  DOWNLOAD_DIRECTLY: 'Press for download page',
+  DOWNLOAD_DIRECTLY: 'Press for Direct version',
 
   ERROR_TITLE: 'This page doesn\'t exist.',
 
@@ -91,7 +91,7 @@ function load() {
     XML.addEventListener('readystatechange', (e) => {
       if (e.target.readyState === 4) {
         if (e.target.status === 200) {
-          cachedTranslations = JSON.parse(e.target.responseText);
+          //cachedTranslations = JSON.parse(e.target.responseText);
         }
 
         resolve();

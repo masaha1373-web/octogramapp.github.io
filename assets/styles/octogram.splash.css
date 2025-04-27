@@ -40,7 +40,7 @@ body > .splash .shape {
   height: 150px;
   border-radius: 50%;
   overflow: hidden;
-  background: #3d348b;
+  background: rgb(38, 29, 128);
   opacity: 0;
   animation: 0.4s updateBaseShape forwards;
 }

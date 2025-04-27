@@ -1,5 +1,4 @@
 import {getStringRef} from "./octogram.translations.js";
-import * as parallaxHelper from "./octogram.parallax.js";
 
 let currentPageId;
 let currentPageOnDestroyCallback;
@@ -326,8 +325,6 @@ function clearPage(pageId, onDestroyCallback) {
   }
   currentPageId = pageId;
   currentPageOnDestroyCallback = onDestroyCallback;
-  
-  parallaxHelper.clearParallaxState();
 }
 
 function generateRandomEncrScript(length, addTag = false) {
@@ -343,6 +340,25 @@ function generateRandomEncrScript(length, addTag = false) {
   }
 }
 
+function generateWaveGradient(fill, useSvg2 = false) {
+  const svg1 = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  svg1.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+  svg1.setAttribute('viewBox', '0 0 1440 320');
+  svg1.classList.add('btm-1');
+
+  const path1 = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+  path1.setAttribute('fill', fill);
+  path1.setAttribute('fill-opacity', '1');
+  path1.setAttribute('d', 'M0,32L40,48C80,64,160,96,240,90.7C320,85,400,43,480,69.3C560,96,640,192,720,224C800,256,880,224,960,202.7C1040,181,1120,171,1200,186.7C1280,203,1360,245,1400,266.7L1440,288L1440,320L1400,320C1360,320,1280,320,1200,320C1120,320,1040,320,960,320C880,320,800,320,720,320C640,320,560,320,480,320C400,320,320,320,240,320C160,320,80,320,40,320L0,320Z');
+  svg1.appendChild(path1);
+  
+  if (useSvg2) {
+    path1.setAttribute('d', 'M0,224L40,234.7C80,245,160,267,240,250.7C320,235,400,181,480,149.3C560,117,640,107,720,112C800,117,880,139,960,170.7C1040,203,1120,245,1200,224C1280,203,1360,117,1400,74.7L1440,32L1440,320L1400,320C1360,320,1280,320,1200,320C1120,320,1040,320,960,320C880,320,800,320,720,320C640,320,560,320,480,320C400,320,320,320,240,320C160,320,80,320,40,320L0,320Z');
+  }
+  
+  return svg1;
+}
+
 export {
   currentPageId,
   fixInjectionTags,
@@ -354,5 +370,6 @@ export {
   getEmojiByIso2,
   formatDate,
   clearPage,
-  generateRandomEncrScript
+  generateRandomEncrScript,
+  generateWaveGradient
 };

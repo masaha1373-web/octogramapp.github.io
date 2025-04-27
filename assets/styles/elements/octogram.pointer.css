@@ -1,5 +1,5 @@
 body > .page > .pointer {
-  background: #11091e;
+  background: #12062a;
   padding-block: 60px;
   margin-bottom: 40px;
   box-sizing: border-box;
@@ -18,7 +18,7 @@ body > .page > .pointer::before {
   top: 0;
   width: 100%;
   height: 50px;
-  background: linear-gradient(#0f031e, #11091e);
+  background: linear-gradient(#0f031e, #12062a);
 }
 
 body > .page > .pointer::after {
@@ -28,7 +28,7 @@ body > .page > .pointer::after {
   bottom: 0;
   width: 100%;
   height: 50px;
-  background: linear-gradient(#11091e, #0f031e);
+  background: linear-gradient(#12062a, #0f031e);
 }
 
 body > .page > .pointer {

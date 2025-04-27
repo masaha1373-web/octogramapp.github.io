@@ -1,4 +1,4 @@
-import {calculateSize, clearPage} from "./octogram.utils.js";
+import {calculateSize, clearPage, generateWaveGradient} from "./octogram.utils.js";
 import * as header from "./octogram.header.js";
 import {getStringRef} from "./octogram.translations.js";
 import * as footer from "./octogram.footer.js";
@@ -131,30 +131,12 @@ function generateIntroduction() {
   const background = document.createElement('div');
   background.className = 'background';
 
-  const svg1 = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-  svg1.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
-  svg1.setAttribute('viewBox', '0 0 1440 320');
-  svg1.classList.add('btm-1');
-
-  const path1 = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-  path1.setAttribute('fill', '#0f031e');
-  path1.setAttribute('fill-opacity', '1');
-  path1.setAttribute('d', 'M0,32L40,48C80,64,160,96,240,90.7C320,85,400,43,480,69.3C560,96,640,192,720,224C800,256,880,224,960,202.7C1040,181,1120,171,1200,186.7C1280,203,1360,245,1400,266.7L1440,288L1440,320L1400,320C1360,320,1280,320,1200,320C1120,320,1040,320,960,320C880,320,800,320,720,320C640,320,560,320,480,320C400,320,320,320,240,320C160,320,80,320,40,320L0,320Z');
-  svg1.appendChild(path1);
-
-  const svg2 = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-  svg2.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
-  svg2.setAttribute('viewBox', '0 0 1440 320');
-  svg2.classList.add('top-1');
-
-  const path2 = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-  path2.setAttribute('fill', '#0f031e');
-  path2.setAttribute('fill-opacity', '1');
-  path2.setAttribute('d', 'M0,224L40,234.7C80,245,160,267,240,250.7C320,235,400,181,480,149.3C560,117,640,107,720,112C800,117,880,139,960,170.7C1040,203,1120,245,1200,224C1280,203,1360,117,1400,74.7L1440,32L1440,320L1400,320C1360,320,1280,320,1200,320C1120,320,1040,320,960,320C880,320,800,320,720,320C640,320,560,320,480,320C400,320,320,320,240,320C160,320,80,320,40,320L0,320Z');
-  svg2.appendChild(path2);
-
-  background.appendChild(svg1);
-  background.appendChild(svg2);
+  background.appendChild(generateWaveGradient('#0f031e', false));
+  
+  const second = generateWaveGradient('#0f031e', true);
+  second.classList.remove('btm-1');
+  second.classList.add('top-1');
+  background.appendChild(second);
   
   const introductionContent = document.createElement('div');
   introductionContent.classList.add('content');
@@ -192,6 +174,10 @@ function generateIntroduction() {
 }
 
 function generateDownload() {
+  const stickerImage = document.createElement('lottie-player');
+  stickerImage.toggleAttribute('loop');
+  stickerImage.toggleAttribute('autoplay');
+  stickerImage.src = '/assets/animations/_070_TELEMAG_OUT.json';
   const messageTitle = document.createElement('div');
   messageTitle.classList.add('title');
   messageTitle.textContent = getStringRef('DOWNLOAD_TITLE');
@@ -200,38 +186,32 @@ function generateDownload() {
   messageDescription.textContent = getStringRef('DOWNLOAD_DESCRIPTION');
   const message = document.createElement('div');
   message.classList.add('message');
+  message.appendChild(stickerImage);
   message.appendChild(messageTitle);
   message.appendChild(messageDescription);
 
   const files = document.createElement('a');
   files.classList.add('files');
   files.addEventListener('click', () => changelog.init());
-
-  const fromApk = document.createElement('div');
-  fromApk.classList.add('from-apk');
-  fromApk.appendChild(message);
-  fromApk.appendChild(files);
-
+  
   const separator = document.createElement('div');
   separator.classList.add('separator');
-
-  const storeMessageDescription = document.createElement('div');
-  storeMessageDescription.classList.add('description');
-  storeMessageDescription.textContent = getStringRef('DOWNLOAD_STORES');
-  const storeMessage = document.createElement('div');
-  storeMessage.classList.add('message');
-  storeMessage.appendChild(storeMessageDescription);
+  separator.style.setProperty('--text', '"or"');
 
   const stores = document.createElement('div');
   stores.classList.add('stores');
   appendStores(stores);
+  
+  const rightPart = document.createElement('div');
+  rightPart.classList.add('right');
+  rightPart.appendChild(files);
+  rightPart.appendChild(separator);
+  rightPart.appendChild(stores);
 
   const content = document.createElement('div');
   content.classList.add('content', 'unavailable-apk');
-  content.appendChild(fromApk);
-  content.appendChild(separator);
-  content.appendChild(storeMessage);
-  content.appendChild(stores);
+  content.appendChild(message);
+  content.appendChild(rightPart);
 
   const downloadContainer = document.createElement('div');
   downloadContainer.classList.add('download');
@@ -247,13 +227,11 @@ function appendStores(stores) {
   stores.appendChild(generateStore({
     iconUrl: 'assets/stores/apkpure.png',
     id: 'apkpure',
-    title: 'ApkPure',
     href: '/apkpure'
   }));
   stores.appendChild(generateStore({
     iconUrl: 'assets/stores/playstore.png',
     id: 'playstore',
-    title: 'PlayStore',
     href: '/playstore'
   }));
 }
@@ -271,10 +249,6 @@ function generateStore({
   storeIconContainer.classList.add('icon', 'need-border');
   storeIconContainer.appendChild(storeIconElement);
 
-  const storeTitle = document.createElement('div');
-  storeTitle.classList.add('text');
-  storeTitle.textContent = title;
-
   let store;
   if (isUnavailable) {
     store = document.createElement('div');
@@ -287,7 +261,6 @@ function generateStore({
     const container = document.createElement('div');
     container.classList.add('container');
     container.appendChild(storeDescription);
-    container.appendChild(storeTitle);
 
     store.appendChild(container);
   } else {
@@ -303,7 +276,6 @@ function generateStore({
     continueContainer.classList.add('continue');
     continueContainer.textContent = getStringRef('DOWNLOAD_AVAILABLE');
 
-    store.appendChild(storeTitle);
     store.appendChild(animatedIconContainer);
     store.appendChild(continueContainer);
   }

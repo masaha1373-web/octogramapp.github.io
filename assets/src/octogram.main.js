@@ -1,6 +1,5 @@
 import {isAndroid} from "./octogram.utils.js";
 import * as translations from "./octogram.translations.js";
-import * as parallaxHelper from "./octogram.parallax.js";
 import * as changelog from "./octogram.changelog.js";
 import * as dcStatus from "./octogram.dcstatus.js";
 import * as privacyPolicy from "./octogram.privacy.js";
@@ -80,7 +79,6 @@ window.addEventListener('load', () => {
     } else {
       splashScreen.classList.add('disappear');
       splashScreen.addEventListener('transitionend', () => splashScreen.remove(), { once: true });
-      parallaxHelper.init();
 
       switch(window.location.pathname) {
         case '/changelog.html':

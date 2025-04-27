@@ -1,24 +1,14 @@
-import * as homePage from "./octogram.home.js";
 import * as utils from "./octogram.utils.js";
-import {getStringRef, getTextNodeByStringRef} from "./octogram.translations.js";
+import {getStringRef} from "./octogram.translations.js";
 import * as privacyPolicy from "./octogram.privacy.js";
 import * as changelog from "./octogram.changelog.js";
 import * as dcStatus from "./octogram.dcstatus.js";
+import {generateWaveGradient} from "./octogram.utils.js";
 
 let currentExpandedCategory;
 
 function createElement() {
   currentExpandedCategory = undefined;
-
-  const footerGoTopIcon = document.createElement('img');
-  footerGoTopIcon.src = 'assets/icons/arrowright.svg';
-  const footerGoTopButton = document.createElement('div');
-  footerGoTopButton.classList.add('go-to-top-button');
-  footerGoTopButton.addEventListener('click', () => window.scrollTo(0, 0));
-  footerGoTopButton.appendChild(footerGoTopIcon);
-  const footerGoTopContainer = document.createElement('div');
-  footerGoTopContainer.classList.add('go-to-top');
-  footerGoTopContainer.appendChild(footerGoTopButton);
 
   const linksContainer = document.createElement('div');
   linksContainer.classList.add('links');
@@ -34,10 +24,10 @@ function createElement() {
   footerText.classList.add('text');
   footerText.textContent = 'Octogram © ' + new Date().getFullYear().toString() + ' - ';
   footerText.appendChild(footerTextFork);
-
+  
   const footerContainer = document.createElement('div');
   footerContainer.classList.add('footer', 'big');
-  footerContainer.appendChild(footerGoTopContainer);
+  footerContainer.appendChild(generateWaveGradient('#12062a'));
   footerContainer.appendChild(linksContainer);
   footerContainer.appendChild(footerText);
 

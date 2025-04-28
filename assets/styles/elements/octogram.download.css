@@ -1,87 +1,78 @@
-body > .page > #download > .download {
+body > .page > .download {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 50px;
+  margin-top: 50px;
 }
 
-body > .page > #download > .download .content {
+body > .page > .download .content {
   position: relative;
   overflow: hidden;
   max-width: min(95vw, 1400px);
-  padding: 30px;
-  border-radius: 30px;
-  gap: 20px;
   width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+@media (max-width: 900px) {
+  body > .page > .download .content {
+    flex-direction: column;
+    gap: 30px;
+  }
+}
+
+body > .page > .download .content .message {
+  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  box-sizing: border-box;
 }
 
-body > .page > #download > .download .content::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #6a7ed63d;
-  opacity: var(--parallax-state);
-  pointer-events: none;
-  z-index: -1;
+body > .page > .download .content .message lottie-player {
+  width: 150px;
 }
 
-@media screen and (max-width: 700px) {
-  body > .page > #download > .download .content .message {
-    width: 100%;
-    margin-bottom: 10px;
-  }
-}
-
-body > .page > #download > .download .content .message .title {
+body > .page > .download .content .message .title {
   color: #FFFFFF;
-  font-size: 3em;
-  font-weight: 800;
+  font-size: 2.3em;
+  font-weight: 600;
 }
 
-@media screen and (max-width: 700px) {
-  body > .page > #download > .download .content .message .title {
-    display: none;
-  }
+body > .page > .download .content .message .description {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.3em;
+  max-width: max(25vw, 400px);
+  text-align: center;
 }
 
-
-body > .page > #download > .download .content .message .description {
-  color: #FFFFFF;
-  font-size: 1.5em;
-}
-
-body > .page > #download > .download .content .from-apk {
-  width: 100%;
+body > .page > .download .content .right {
+  flex: 1;
   display: flex;
   align-items: center;
   justify-content: space-around;
+  flex-direction: column;
 }
 
-@media screen and (max-width: 700px) {
-  body > .page > #download > .download .content .from-apk {
-    flex-direction: column;
+@media (max-width: 900px) {
+  body > .page > .download .content .right {
+    width: 100%;
+    max-width: max(25vw, 400px);
   }
 }
 
-body > .page > #download > .download .content .from-apk .files {
+body > .page > .download .content .right .files {
   width: 100%;
   max-width: 375px;
   padding: 17px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 2px solid rgba(106, 124, 214, 0.2);
-  background: rgba(106, 124, 214, 0.2);
-  border-radius: 30px;
+  background: #28115a66;
+  border-radius: 15px;
   cursor: pointer;
   overflow: hidden;
   position: relative;
@@ -90,11 +81,11 @@ body > .page > #download > .download .content .from-apk .files {
   transition: 0.4s border-color;
 }
 
-body > .page > #download > .download .content .from-apk .files:hover {
-  border-color: #5769a7;
+body > .page > .download .content .right .files:hover {
+  border-color: #3d358b;
 }
 
-body > .page > #download > .download .content .from-apk .files::before {
+body > .page > .download .content .right .files::before {
   content: "";
   position: absolute;
   top: 0;
@@ -104,32 +95,26 @@ body > .page > #download > .download .content .from-apk .files::before {
   width: 100%;
   z-index: 1;
   pointer-events: none;
-  background: #5769a7;
+  background: #3d358b;
   clip-path: circle(0% at 25% 50%);
   transition: 0.4s clip-path;
 }
 
-body > .page > #download > .download .content .from-apk .files:hover::before {
+body > .page > .download .content .right .files:hover::before {
   clip-path: circle(100%);
 }
 
-@media screen and (max-width: 700px) {
-  body > .page > #download > .download .content .from-apk .files {
-    max-width: none;
-  }
-}
-
-body > .page > #download > .download .content .from-apk .files .file-icon-container {
+body > .page > .download .content .right .files .file-icon-container {
   margin-right: 15px;
   position: relative;
 }
 
-body > .page > #download > .download .content .from-apk .files .file-icon-container .icon {
+body > .page > .download .content .right .files .file-icon-container .icon {
   height: 70px;
   width: 70px;
 }
 
-body > .page > #download > .download .content .from-apk .files .file-icon-container .size {
+body > .page > .download .content .right .files .file-icon-container .size {
   position: absolute;
   bottom: 9px;
   font-size: 15px;
@@ -139,152 +124,108 @@ body > .page > #download > .download .content .from-apk .files .file-icon-contai
   color: #FFFFFF;
 }
 
-body > .page > #download > .download .content .from-apk .files .right-container {
+body > .page > .download .content .right .files .right-container {
   z-index: 1;
   transition: 0.4s margin-left;
 }
 
-body > .page > #download > .download .content .from-apk .files:hover .right-container {
+body > .page > .download .content .right .files:hover .right-container {
   margin-left: calc(-1 * 70px - 15px);
 }
 
-body > .page > #download > .download .content .from-apk .files .right-container .title {
+body > .page > .download .content .right .files .right-container .title {
   font-size: 20px;
   color: #FFFFFF;
 }
 
-body > .page > #download > .download .content .from-apk .files .right-container .description {
+body > .page > .download .content .right .files .right-container .description {
   color: rgba(255, 255, 255, 0.8);
 }
 
-body > .page > #download > .download .content .separator {
-  width: 100%;
+body > .page > .download .content .right .separator {
+  width: 50%;
+  max-width: 375px;
   background: rgba(255, 255, 255, 0.2);
   height: 1px;
   margin-block: 20px;
+  position: relative;
 }
 
-body > .page > #download > .download .stores {
+body > .page > .download .content .right .separator::after {
+  content: var(--text);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-60%);
+  background: #0f031e;
+  color: rgba(255, 255, 255, 0.5);
+  padding-inline: 20px;
+}
+
+body > .page > .download .content .right .stores {
   width: 100%;
-  display: grid;
-  grid-template-rows: 1fr;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-}
-
-@media screen and (min-width: 650px) and (max-width: 1270px) {
-  body > .page > #download > .download .stores {
-    grid-template-rows: repeat(2, 1fr);
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media screen and (max-width: 650px) {
-  body > .page > #download > .download .stores {
-    grid-template-rows: repeat(4, 1fr);
-    grid-template-columns: 1fr;
-    gap: 10px;
-  }
-}
-
-body > .page > #download > .download .stores .store {
-  height: 4.5em;
+  max-width: 375px;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  border-radius: 25px;
+}
+
+body > .page > .download .content .right .stores .store {
+  height: 4.5em;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-radius: 15px;
   position: relative;
   cursor: pointer;
   overflow: hidden;
-  border: 2px solid rgba(106, 124, 214, 0.2);
-  background: rgba(106, 124, 214, 0.2);
-  transition: 0.4s border-color;
+  background: var(--primary);
 }
 
-@media screen and (max-width: 650px) {
-  body > .page > #download > .download .stores .store {
-    justify-content: start;
-    padding-left: 20px;
-    gap: 20px;
-  }
-}
-
-body > .page > #download > .download .stores .store:not(.unavailable):hover {
-  border-color: var(--primary);
-}
-
-body > .page > #download > .download .stores .store.unavailable {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-body > .page > #download > .download .stores a.store {
+body > .page > .download .content .right .stores a.store {
   text-decoration: none;
 }
 
-body > .page > #download > .download .stores .store[data-id="apkmirror"] {
+body > .page > .download .content .right .stores .store[data-id="apkmirror"] {
   --primary: #f76912;
   --text-width: 156.2px;
 }
 
-body > .page > #download > .download .stores .store[data-id="apkpure"] {
-  --primary: #005d52;
+body > .page > .download .content .right .stores .store[data-id="apkpure"] {
+  --primary: #001c18;
   --text-width: 129.61px;
 }
 
-body > .page > #download > .download .stores .store[data-id="appcenter"] {
+body > .page > .download .content .right .stores .store[data-id="appcenter"] {
   --primary: #4f1428;
   --text-width: 166.19px;
 }
 
-body > .page > #download > .download .stores .store[data-id="playstore"] {
-  --primary: #0e0e0e;
+body > .page > .download .content .right .stores .store[data-id="playstore"] {
+  --primary: #000000;
   --text-width: 147.14px;
 }
 
-body > .page > #download > .download .stores .store::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  width: 100%;
-  z-index: 1;
-  pointer-events: none;
-  background: var(--primary);
-  clip-path: circle(0% at 25% 50%);
-  transition: 0.4s clip-path;
-}
-
-@media screen and (max-width: 650px) {
-  body > .page > #download > .download .stores .store:not(.unavailable):not(:hover)::before {
-    clip-path: circle(0% at calc(20px + 1.5em) 50%);
-  }
-}
-
-body > .page > #download > .download .stores .store:not(.unavailable):hover::before {
-  clip-path: circle(100%);
-}
-
-body > .page > #download > .download .stores .store .icon {
+body > .page > .download .content .right .stores .store .icon {
   border-radius: 25%;
   overflow: hidden;
   transition: 0.4s transform;
 }
 
 @media screen and (min-width: 650px) {
-  body > .page > #download > .download .stores .store .icon {
+  body > .page > .download .content .right .stores .store .icon {
     z-index: 1;
   }
 
-  body > .page > #download > .download .stores .store:not(.unavailable):hover .icon {
+  body > .page > .download .content .right .stores .store:not(.unavailable):hover .icon {
     transform: scale(0.8) translateY(-25%);
   }
 }
 
-body > .page > #download > .download .stores .store .icon.need-border {
+body > .page > .download .content .right .stores .store .icon.need-border {
   background: var(--primary);
   width: 3em;
   height: 3em;
@@ -293,33 +234,22 @@ body > .page > #download > .download .stores .store .icon.need-border {
   justify-content: center;
 }
 
-body > .page > #download > .download .stores .store .icon img {
+body > .page > .download .content .right .stores .store .icon img {
   width: 3em;
   height: 3em;
 }
 
-body > .page > #download > .download .stores .store .icon.need-border img {
+body > .page > .download .content .right .stores .store .icon.need-border img {
   width: 1.5em;
   height: 1.5em;
 }
 
-body > .page > #download > .download .stores .store .text {
-  font-size: 2em;
-  color: #FFFFFF;
-  z-index: 0;
-  transition: 0.4s margin-right;
-}
-
-body > .page > #download > .download .stores .store:not(.unavailable):hover .text {
-  margin-right: calc(var(--text-width) * -1);
-}
-
-body > .page > #download > .download .stores .store .description {
+body > .page > .download .content .right .stores .store .description {
   color: rgba(255, 255, 255, 0.95);
   font-size: 0.9em;
 }
 
-body > .page > #download > .download .stores .store .access-icon {
+body > .page > .download .content .right .stores .store .access-icon {
   position: absolute;
   top: -20px;
   left: 50%;
@@ -331,13 +261,13 @@ body > .page > #download > .download .stores .store .access-icon {
 }
 
 @media screen and (max-width: 650px) {
-  body > .page > #download > .download .stores .store:hover .access-icon {
+  body > .page > .download .content .right .stores .store:hover .access-icon {
     top: 0px;
     opacity: 1;
   }
 }
 
-body > .page > #download > .download .stores .store .continue {
+body > .page > .download .content .right .stores .store .continue {
   position: absolute;
   bottom: -100%;
   left: 0;
@@ -350,29 +280,17 @@ body > .page > #download > .download .stores .store .continue {
   transition: 0.4s bottom, 0.4s opacity;
 }
 
-body > .page > #download > .download .stores .store:hover .continue {
+body > .page > .download .content .right .stores .store:hover .continue {
   bottom: 8px;
   opacity: 1;
 }
 
-body > .page > #download > .download .content .placeholder {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  opacity: 0.1;
-  pointer-events: none;
-}
-
-
-body > .page > #download > .download .content.unavailable-apk .from-apk .files,
-body > .page > #download > .download .content.unavailable-apk .separator,
-body > .page > #download > .download .content.unavailable-apk > .message {
+body > .page > .download .content.unavailable-apk .from-apk .files,
+body > .page > .download .content.unavailable-apk .separator,
+body > .page > .download .content.unavailable-apk > .message {
   display: none;
 }
 
-body > .page > #download > .download .content.unavailable-apk .from-apk .message {
+body > .page > .download .content.unavailable-apk .from-apk .message {
   text-align: center;
 }

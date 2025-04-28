@@ -9,9 +9,9 @@ body > .page > .card {
 body > .page > .card .content {
   position: relative;
   overflow: hidden;
-  background: #13171e;
+  background: #11091e;
   max-width: min(95vw, 1400px);
-  padding: 20px;
+  padding: 30px;
   border-radius: 25px;
   width: 100%;
   box-sizing: border-box;
@@ -33,7 +33,7 @@ body > .page > .card .content .descriptor {
 
 body > .page > .card .content .descriptor .title {
   color: #FFFFFF;
-  font-size: 1.3em;
+  font-size: 1.5em;
   font-weight: 500;
   display: flex;
   align-items: center;
@@ -137,6 +137,7 @@ body > .page > .card .content .body .message {
   color: rgba(255, 255, 255, 0.9);
   padding-left: 20px;
   flex: 1;
+  line-height: 21px;
 }
 
 body > .page > .card .content .body .message:before {
@@ -162,12 +163,13 @@ body > .page > .card .content .body .message a {
 }
 
 body > .page > .card .content .body .message .bold {
-  font-weight: 600;
+  font-weight: 500;
 }
 
 body > .page > .card .content .body .message .code {
-  background: #202c38;
-  padding: 3px;
+  background: #3d358b;
+  color: white;
+  padding: 1px 4px;
   border-radius: 5px;
 }
 
@@ -448,7 +450,7 @@ body > .page > .card .content .datacenters .datacenter.expanded .expandable {
 
 body > .page > .card .content .datacenters .datacenter .expandable .indicator {
   height: 100%;
-  background: #1d2733;
+  background: #211d33;
   color: #FFFFFF;
   display: flex;
   align-items: center;
@@ -560,7 +562,7 @@ body > .page > .card .content .identifydc {
 }
 
 body > .page > .card .content .identifydc.animate:not(.available) {
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.3);
   animation: 0.4s animateIdentifyDc cubic-bezier(0.42, 0, 0, 1) forwards;
 }
 
@@ -580,7 +582,7 @@ body > .page > .card .content .identifydc.animate:not(.available) {
 }
 
 body > .page > .card .content .identifydc.animate.available {
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.3);
   animation: 0.4s animateIdentifyDcAvailable cubic-bezier(0.42, 0, 0, 1) forwards;
 }
 
@@ -591,7 +593,7 @@ body > .page > .card .content .identifydc.animate.available {
 }
 
 body > .page > .card .content .identifydc.closing {
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.3);
   animation: 0.4s animateIdentifyDc cubic-bezier(0.11, 0.8, 0, 0.99) reverse forwards;
 }
 
@@ -599,7 +601,7 @@ body > .page > .card .content .identifydc.visible {
   height: 245px;
   width: 100%;
   transform: none;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.3);
   margin-top: 20px;
 }
 

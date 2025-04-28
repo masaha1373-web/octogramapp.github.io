@@ -1,25 +1,14 @@
-import * as homePage from "./octogram.home.js";
 import * as utils from "./octogram.utils.js";
-import {getStringRef, getTextNodeByStringRef} from "./octogram.translations.js";
+import {getStringRef} from "./octogram.translations.js";
 import * as privacyPolicy from "./octogram.privacy.js";
-import * as monet from "./octogram.monet.js";
 import * as changelog from "./octogram.changelog.js";
 import * as dcStatus from "./octogram.dcstatus.js";
+import {generateWaveGradient} from "./octogram.utils.js";
 
 let currentExpandedCategory;
 
 function createElement() {
   currentExpandedCategory = undefined;
-
-  const footerGoTopIcon = document.createElement('img');
-  footerGoTopIcon.src = 'assets/icons/arrowright.svg';
-  const footerGoTopButton = document.createElement('div');
-  footerGoTopButton.classList.add('go-to-top-button');
-  footerGoTopButton.addEventListener('click', () => window.scrollTo(0, 0));
-  footerGoTopButton.appendChild(footerGoTopIcon);
-  const footerGoTopContainer = document.createElement('div');
-  footerGoTopContainer.classList.add('go-to-top');
-  footerGoTopContainer.appendChild(footerGoTopButton);
 
   const linksContainer = document.createElement('div');
   linksContainer.classList.add('links');
@@ -35,12 +24,10 @@ function createElement() {
   footerText.classList.add('text');
   footerText.textContent = 'Octogram © ' + new Date().getFullYear().toString() + ' - ';
   footerText.appendChild(footerTextFork);
-  footerText.appendChild(document.createElement('br'));
-  footerText.appendChild(getTextNodeByStringRef('FOOTER_TEXT_2'));
-
+  
   const footerContainer = document.createElement('div');
   footerContainer.classList.add('footer', 'big');
-  footerContainer.appendChild(footerGoTopContainer);
+  footerContainer.appendChild(generateWaveGradient('#12062a'));
   footerContainer.appendChild(linksContainer);
   footerContainer.appendChild(footerText);
 
@@ -65,24 +52,6 @@ function appendLinkContainer(container, id) {
         getStringRef('FOOTER_SITE_TITLE')
       ));
       singleLinkContainer.appendChild(generateSingleLink({
-        text: getStringRef('FOOTER_SITE_FEATURES'),
-        onClick: () => {
-          if (utils.currentPageId !== homePage.id) {
-            homePage.init();
-          }
-          window.location.href = '#features';
-        }
-      }));
-      singleLinkContainer.appendChild(generateSingleLink({
-        text: getStringRef('FOOTER_SITE_DOWNLOAD'),
-        onClick: () => {
-          if (utils.currentPageId !== homePage.id) {
-            homePage.init();
-          }
-          window.location.href = '#download';
-        }
-      }));
-      singleLinkContainer.appendChild(generateSingleLink({
         text: getStringRef('FOOTER_SITE_DC_STATUS'),
         onClick: () => {
           if (utils.currentPageId !== dcStatus.id) {
@@ -95,14 +64,6 @@ function appendLinkContainer(container, id) {
         onClick: () => {
           if (utils.currentPageId !== changelog.id) {
             changelog.init();
-          }
-        }
-      }));
-      singleLinkContainer.appendChild(generateSingleLink({
-        text: getStringRef('FOOTER_SITE_MONET'),
-        onClick: () => {
-          if (utils.currentPageId !== monet.id) {
-            monet.init();
           }
         }
       }));

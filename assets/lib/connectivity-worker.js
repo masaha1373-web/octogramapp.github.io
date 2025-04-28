@@ -26,7 +26,8 @@ function registerDatacenterPing(forceReloadAuthKeyTries = 0, authKey) {
 
     registerDatacenterConnection(forceReloadAuthKeyTries > 0, authKey).then(() => {
         const startTime = Date.now();
-        cachedClient.api.ping({
+        cachedClient.invoke({
+            _: "ping",
             ping_id: getRandomId(),
         }).then(() => {
             const endTime = Date.now();
@@ -35,7 +36,7 @@ function registerDatacenterPing(forceReloadAuthKeyTries = 0, authKey) {
                 ping: endTime - startTime,
             });
         }).catch((e) => {
-            console.error(e);
+            self.console.error(e);
 
             if (e instanceof ConnectionError) {
                 forceReloadAuthKeyTries++;

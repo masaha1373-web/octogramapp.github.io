@@ -38,8 +38,10 @@ function init() {
 }
 
 function generatePointer() {
-  const stickerImage = document.createElement('img');
-  stickerImage.src = 'assets/animations/changelogAnimation.gif';
+  const stickerImage = document.createElement('lottie-player');
+  stickerImage.toggleAttribute('autoplay');
+  stickerImage.toggleAttribute('loop');
+  stickerImage.src = 'assets/animations/_031_EVOLVE_OUT.json';
   const stickerContainer = document.createElement('div');
   stickerContainer.classList.add('sticker');
   stickerContainer.appendChild(stickerImage);
@@ -103,9 +105,13 @@ function loadVersions(replaceTo) {
     XML.send();
     XML.addEventListener('readystatechange', (e) => {
       if (e.target.readyState === 4 && e.target.status === 200) {
-        const response = JSON.parse(e.target.responseText);
+        let response = JSON.parse(e.target.responseText);
 
         if (response.length > 0) {
+          if (response.length > 20) {
+            response = response.slice(0, 20);
+          }
+          
           precachedResponse = response;
           loadWithResponse(replaceTo, response);
         }
@@ -169,7 +175,14 @@ function loadWithResponse(replaceTo, response) {
     descriptor.appendChild(description);
 
     let finalMessage = fixInjectionTags(release['body']);
-    finalMessage = finalMessage.replace('🐙', '<img alt="octoAnimation" src="/assets/animations/octoAnimation.gif">')
+    if (finalMessage.startsWith('🐙')) {
+      const splitted = finalMessage.split('<br/>').slice(1);
+      if (splitted[0] === "") {
+        finalMessage = splitted.slice(1, splitted.length).join('<br/>');
+      } else {
+        finalMessage = splitted.join('<br/>');
+      }
+    }
     const message = document.createElement('div');
     message.classList.add('message');
     message.innerHTML = finalMessage;

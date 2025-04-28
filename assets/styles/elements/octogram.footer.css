@@ -1,7 +1,7 @@
 body > .page > .footer {
   width: 100%;
-  padding-top: 40px;
-  background: #13171e;
+  background: #12062a;
+  margin-top: 250px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -10,55 +10,16 @@ body > .page > .footer {
   box-sizing: border-box;
 }
 
-body > .page > .footer::before {
-  content: "";
+@media (max-width: 800px) {
+  body > .page > .footer {
+    margin-top: 100px;
+  }
+}
+
+body > .page > .footer svg.btm-1 {
   position: absolute;
   top: 0;
-  left: 0;
-  width: 100%;
-  height: 20px;
-  background: linear-gradient(
-    #0b1015,
-    #13171e
-  );
-}
-
-body > .page > .footer .go-to-top {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-body > .page > .footer .go-to-top .go-to-top-button {
-  height: 51px;
-  width: 51px;
-  background: #13171e;
-  transform: translateY(-16px) rotate(45deg);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 10px;
-  border: 3px solid #151e27;
-  cursor: pointer;
-}
-
-body > .page > .footer .go-to-top .go-to-top-button img {
-  width: 25px;
-  transform: rotate(225deg);
-  filter: invert(1);
-  transition: 0.4s transform;
-}
-
-body > .page > .footer .go-to-top .go-to-top-button:hover img {
-  transform: rotate(225deg) scale(0.98);
-}
-
-body > .page > .footer .go-to-top .go-to-top-button:active img {
-  transform: rotate(225deg) scale(0.9);
+  transform: scaleY(0.5) translateY(-140%);
 }
 
 body > .page > .footer > .text {
@@ -70,7 +31,7 @@ body > .page > .footer > .text {
 
 body > .page > .footer > .text a {
   text-decoration: none;
-  color: #547ed6;
+  color: #5348c3;
 }
 
 body > .page > .footer .links {
@@ -124,19 +85,8 @@ body > .page > .footer .links .single-link-container .link-title {
   position: relative;
 }
 
-body > .page > .footer .links .single-link-container .link-title .expand {
-  position: absolute;
-  right: 0;
-  filter: invert(1);
-  transition: 0.4s transform;
-}
-
-body > .page > .footer .links .single-link-container.expanded .link-title .expand {
-  transform: rotateX(180deg);
-}
-
 body > .page > .footer .links .single-link-container .link {
-  color: #547ed6;
+  color: #5348c3;
   text-decoration: none;
   margin-bottom: 4px;
   padding-left: 20px;
@@ -152,25 +102,8 @@ body > .page > .footer .links:has(.link:hover) .single-link-container .link {
   opacity: 0.2;
 }
 
-body > .page > .footer .links .single-link-container .link::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  left: 0;
-  height: 2px;
-  width: 0%;
-  background: #FFFFFF;
-  transition: 0.4s width;
-}
-
 body > .page > .footer .links .single-link-container .link:hover {
-  padding-left: 0;
   opacity: 1 !important;
-}
-
-body > .page > .footer .links .single-link-container .link:hover::before {
-  width: 81%;
 }
 
 body > .page > .footer .links .single-link-container .link:nth-child(2) {
@@ -186,14 +119,9 @@ body > .page > .footer .links .single-link-container .link .icon {
   transition: 0.4s left;
 }
 
-body > .page > .footer .links .single-link-container .link:hover .icon {
-  left: 80%;
-}
-
 body > .page > .footer .links .single-link-container .link .text {
   z-index: 0;
   position: relative;
-  background: #13171e;
   width: fit-content;
   padding-right: 10px;
 }

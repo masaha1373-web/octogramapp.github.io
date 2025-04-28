@@ -175,7 +175,14 @@ function loadWithResponse(replaceTo, response) {
     descriptor.appendChild(description);
 
     let finalMessage = fixInjectionTags(release['body']);
-    finalMessage = finalMessage.replace('🐙', '<img alt="octoAnimation" src="/assets/animations/octoAnimation.gif">')
+    if (finalMessage.startsWith('🐙')) {
+      const splitted = finalMessage.split('<br/>').slice(1);
+      if (splitted[0] === "") {
+        finalMessage = splitted.slice(1, splitted.length).join('<br/>');
+      } else {
+        finalMessage = splitted.join('<br/>');
+      }
+    }
     const message = document.createElement('div');
     message.classList.add('message');
     message.innerHTML = finalMessage;

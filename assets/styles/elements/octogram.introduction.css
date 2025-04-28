@@ -94,7 +94,7 @@ body > .page > .introduction .content .app-name {
 
 body > .page > .introduction .content .app-description {
   font-size: 1.3em;
-  max-width: 25vw;
+  max-width: max(400px, 25vw);
   text-align: center;
   color: rgba(255, 255, 255, 0.7);
   transform: translateY(20px);

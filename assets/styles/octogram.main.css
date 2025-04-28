@@ -36,6 +36,14 @@ body > .page {
     animation: 0.4s appearOpacity 0.2s forwards;
 }
 
+
+@media (max-width: 900px) {
+    body > .page {
+        padding-top: 60px;
+        box-sizing: border-box;
+    }
+}
+
 @keyframes appearOpacity {
     from {
         opacity: 0;

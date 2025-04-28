@@ -137,6 +137,7 @@ body > .page > .card .content .body .message {
   color: rgba(255, 255, 255, 0.9);
   padding-left: 20px;
   flex: 1;
+  line-height: 21px;
 }
 
 body > .page > .card .content .body .message:before {
@@ -162,12 +163,13 @@ body > .page > .card .content .body .message a {
 }
 
 body > .page > .card .content .body .message .bold {
-  font-weight: 600;
+  font-weight: 500;
 }
 
 body > .page > .card .content .body .message .code {
-  background: #202c38;
-  padding: 3px;
+  background: #3d358b;
+  color: white;
+  padding: 1px 4px;
   border-radius: 5px;
 }
 

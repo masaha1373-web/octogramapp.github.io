@@ -17,6 +17,13 @@ body > .page > .download .content {
   box-sizing: border-box;
 }
 
+@media (max-width: 900px) {
+  body > .page > .download .content {
+    flex-direction: column;
+    gap: 30px;
+  }
+}
+
 body > .page > .download .content .message {
   flex: 1;
   display: flex;
@@ -32,13 +39,13 @@ body > .page > .download .content .message lottie-player {
 body > .page > .download .content .message .title {
   color: #FFFFFF;
   font-size: 2.3em;
-  font-weight: 800;
+  font-weight: 600;
 }
 
 body > .page > .download .content .message .description {
   color: rgba(255, 255, 255, 0.7);
   font-size: 1.3em;
-  max-width: 61%;
+  max-width: max(25vw, 400px);
   text-align: center;
 }
 
@@ -48,6 +55,13 @@ body > .page > .download .content .right {
   align-items: center;
   justify-content: space-around;
   flex-direction: column;
+}
+
+@media (max-width: 900px) {
+  body > .page > .download .content .right {
+    width: 100%;
+    max-width: max(25vw, 400px);
+  }
 }
 
 body > .page > .download .content .right .files {

@@ -10,6 +10,12 @@ body > .page > .footer {
   box-sizing: border-box;
 }
 
+@media (max-width: 800px) {
+  body > .page > .footer {
+    margin-top: 100px;
+  }
+}
+
 body > .page > .footer svg.btm-1 {
   position: absolute;
   top: 0;

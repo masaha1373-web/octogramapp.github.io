@@ -19,9 +19,19 @@ function createElement({
   const appLogo = document.createElement('a');
   appLogo.classList.add('applogo');
   appLogo.classList.toggle('show-back', !!onBackCallback);
-  onBackCallback && appLogo.addEventListener('click', onBackCallback);
+  onBackCallback && appLogo.addEventListener('click', () => {
+    document.body.classList.remove('header-expanded');
+    onBackCallback();
+  });
   appLogo.appendChild(arrowLeft);
   appLogo.appendChild(appLogoImage);
+  
+  const threeLinesButton = document.createElement('div');
+  threeLinesButton.classList.add('menu');
+  threeLinesButton.addEventListener('click', () => document.body.classList.toggle('header-expanded'));
+  threeLinesButton.appendChild(document.createElement('div'));
+  threeLinesButton.appendChild(document.createElement('div'));
+  threeLinesButton.appendChild(document.createElement('div'));
 
   const actions = document.createElement('div');
   actions.classList.add('actions');
@@ -30,6 +40,7 @@ function createElement({
   const content = document.createElement('div');
   content.classList.add('content');
   content.appendChild(appLogo);
+  content.appendChild(threeLinesButton);
   content.appendChild(actions);
 
   const header = document.createElement('div');
@@ -48,6 +59,7 @@ function appendActions(actions) {
     text: getStringRef('HEADER_HOME'),
     isEnabled: currentPageId === homePage.id,
     onClick: () => {
+      document.body.classList.remove('header-expanded');
       if (currentPageId !== homePage.id) {
         homePage.init();
       }
@@ -58,6 +70,7 @@ function appendActions(actions) {
     text: getStringRef('HEADER_DOWNLOAD'),
     isEnabled: currentPageId === changelog.id,
     onClick: () => {
+      document.body.classList.remove('header-expanded');
       if (currentPageId !== changelog.id) {
         changelog.init();
       }
@@ -66,9 +79,9 @@ function appendActions(actions) {
 
   actions.appendChild(createButton({
     text: getStringRef('HEADER_DC_STATUS'),
-    isSecondary: true,
     isEnabled: currentPageId === dcStatus.id,
     onClick: () => {
+      document.body.classList.remove('header-expanded');
       if (currentPageId !== dcStatus.id) {
         dcStatus.init();
       }
@@ -78,7 +91,6 @@ function appendActions(actions) {
 
 function createButton({
   text,
-  isSecondary = false,
   isEnabled = false,
   onClick,
   url
@@ -88,7 +100,6 @@ function createButton({
   textContainer.textContent = text;
   const button = document.createElement('a');
   button.classList.add('button');
-  button.classList.toggle('secondary', isSecondary);
   button.classList.toggle('enabled', isEnabled);
   button.appendChild(textContainer);
 

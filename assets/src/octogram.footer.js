@@ -141,7 +141,7 @@ function appendLinkContainer(container, id) {
 function generateContainerTitle(text) {
 	const linkTitleChevron = document.createElement('img');
 	linkTitleChevron.classList.add('expand');
-	linkTitleChevron.src = 'assets/icons/chevrondown.svg';
+	linkTitleChevron.src = '/assets/icons/chevrondown.svg';
 	const linkTitle = document.createElement('div');
 	linkTitle.classList.add('link-title');
 	linkTitle.appendChild(document.createTextNode(text));
@@ -157,7 +157,7 @@ function generateSingleLink({
 							}) {
 	const linkArrowRight = document.createElement('img');
 	linkArrowRight.classList.add('icon');
-	linkArrowRight.src = 'assets/icons/arrowright.svg';
+	linkArrowRight.src = '/assets/icons/arrowright.svg';
 	const linkText = document.createElement('div');
 	linkText.classList.add('text');
 	linkText.textContent = text;

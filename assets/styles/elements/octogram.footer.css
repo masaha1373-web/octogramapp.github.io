@@ -85,6 +85,17 @@ body > .page > .footer .links .single-link-container .link-title {
   position: relative;
 }
 
+body > .page > .footer .links .single-link-container .link-title .expand {
+  position: absolute;
+  right: 0;
+  filter: invert(1);
+  transition: 0.4s transform;
+}
+
+body > .page > .footer .links .single-link-container.expanded .link-title .expand {
+  transform: rotateX(180deg);
+}
+
 body > .page > .footer .links .single-link-container .link {
   color: #5348c3;
   text-decoration: none;

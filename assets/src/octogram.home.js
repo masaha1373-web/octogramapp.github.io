@@ -225,12 +225,12 @@ function generateDownload() {
 
 function appendStores(stores) {
 	stores.appendChild(generateStore({
-		iconUrl: 'assets/stores/apkpure.png',
+		iconUrl: '/assets/stores/apkpure.png',
 		id: 'apkpure',
 		href: '/apkpure'
 	}));
 	stores.appendChild(generateStore({
-		iconUrl: 'assets/stores/playstore.png',
+		iconUrl: '/assets/stores/playstore.png',
 		id: 'playstore',
 		href: '/playstore'
 	}));
@@ -239,7 +239,6 @@ function appendStores(stores) {
 function generateStore({
 						   iconUrl,
 						   id,
-						   title,
 						   href,
 						   isUnavailable = false
 					   }) {

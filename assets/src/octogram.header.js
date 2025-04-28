@@ -12,10 +12,10 @@ function createElement({
 						   isError = false
 					   } = {}) {
 	const appLogoImage = document.createElement('img');
-	appLogoImage.src = 'assets/icons/applogo.svg';
+	appLogoImage.src = '/assets/icons/applogo.svg';
 	const arrowLeft = document.createElement('img');
 	arrowLeft.classList.add('arrow');
-	arrowLeft.src = 'assets/icons/arrowleft.svg';
+	arrowLeft.src = '/assets/icons/arrowleft.svg';
 	const appLogo = document.createElement('a');
 	appLogo.classList.add('applogo');
 	appLogo.classList.toggle('show-back', !!onBackCallback);

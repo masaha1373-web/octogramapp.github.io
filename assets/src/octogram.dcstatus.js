@@ -147,7 +147,7 @@ function appendDatacenters(datacenters) {
 		const datacenterBackground = document.createElement('div');
 		datacenterBackground.classList.add('background');
 		const datacenterIcon = document.createElement('img');
-		datacenterIcon.src = 'assets/icons/datacenters/dc' + String(i) + '.svg';
+		datacenterIcon.src = '/assets/icons/datacenters/dc' + String(i) + '.svg';
 
 		const circleItem = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
 		circleItem.setAttributeNS(null, 'cx', '50%');
@@ -178,7 +178,7 @@ function appendDatacenters(datacenters) {
 
 		const datacenterExpand = document.createElement('img');
 		datacenterExpand.classList.add('expand');
-		datacenterExpand.src = 'assets/icons/chevrondown.svg';
+		datacenterExpand.src = '/assets/icons/chevrondown.svg';
 
 		const datacenterRow = document.createElement('div');
 		datacenterRow.classList.add('datacenter');
@@ -235,7 +235,7 @@ function generateExpandableContainer({
 	const ipContainer = document.createElement('div');
 	ipContainer.classList.add('indicator');
 	ipContainer.appendChild(ipContainerTitle);
-	ipContainer.appendChild(composeSeparatorFromIcon('assets/icons/server.svg'));
+	ipContainer.appendChild(composeSeparatorFromIcon('/assets/icons/server.svg'));
 	ipContainer.appendChild(ipContainerContent);
 
 	const lastLagContainerTitle = document.createElement('div');
@@ -247,7 +247,7 @@ function generateExpandableContainer({
 	const lastLagContainer = document.createElement('div');
 	lastLagContainer.classList.add('indicator');
 	lastLagContainer.appendChild(lastLagContainerTitle);
-	lastLagContainer.appendChild(composeSeparatorFromIcon('assets/icons/fan.svg'));
+	lastLagContainer.appendChild(composeSeparatorFromIcon('/assets/icons/fan.svg'));
 	lastLagContainer.appendChild(lastLagContainerContent);
 
 	const lastDownContainerTitle = document.createElement('div');
@@ -259,7 +259,7 @@ function generateExpandableContainer({
 	const lastDownContainer = document.createElement('div');
 	lastDownContainer.classList.add('indicator');
 	lastDownContainer.appendChild(lastDownContainerTitle);
-	lastDownContainer.appendChild(composeSeparatorFromIcon('assets/icons/explosion.svg'));
+	lastDownContainer.appendChild(composeSeparatorFromIcon('/assets/icons/explosion.svg'));
 	lastDownContainer.appendChild(lastDownContainerContent);
 
 	const expandableContainer = document.createElement('div');
@@ -661,7 +661,7 @@ function updateUiWithPrefix(prefix, selectedElement = identifyCardSelector) {
 			const datacenterBackground = document.createElement('div');
 			datacenterBackground.classList.add('background');
 			const datacenterIcon = document.createElement('img');
-			datacenterIcon.src = 'assets/icons/datacenters/dc' + datacenter + '.svg';
+			datacenterIcon.src = '/assets/icons/datacenters/dc' + datacenter + '.svg';
 			const datacenterIconContainer = document.createElement('div');
 			datacenterIconContainer.classList.add('icon');
 			datacenterIconContainer.appendChild(datacenterBackground);

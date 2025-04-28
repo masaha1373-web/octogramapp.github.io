@@ -56,6 +56,7 @@ function createElement({
 
 function appendActions(actions) {
 	actions.appendChild(createButton({
+		i: 0,
 		text: getStringRef('HEADER_HOME'),
 		isEnabled: currentPageId === homePage.id,
 		onClick: () => {
@@ -67,6 +68,7 @@ function appendActions(actions) {
 	}));
 
 	actions.appendChild(createButton({
+		i: 1,
 		text: getStringRef('HEADER_DOWNLOAD'),
 		isEnabled: currentPageId === changelog.id,
 		onClick: () => {
@@ -78,6 +80,7 @@ function appendActions(actions) {
 	}));
 
 	actions.appendChild(createButton({
+		i: 2,
 		text: getStringRef('HEADER_DC_STATUS'),
 		isEnabled: currentPageId === dcStatus.id,
 		onClick: () => {
@@ -90,6 +93,7 @@ function appendActions(actions) {
 }
 
 function createButton({
+						  i,
 						  text,
 						  isEnabled = false,
 						  onClick,
@@ -100,6 +104,7 @@ function createButton({
 	textContainer.textContent = text;
 	const button = document.createElement('a');
 	button.classList.add('button');
+	button.style.setProperty('--i', i);
 	button.classList.toggle('enabled', isEnabled);
 	button.appendChild(textContainer);
 

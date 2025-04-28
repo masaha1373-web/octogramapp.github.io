@@ -90,7 +90,7 @@ function load() {
 		XML.addEventListener('readystatechange', (e) => {
 			if (e.target.readyState === 4) {
 				if (e.target.status === 200) {
-					//cachedTranslations = JSON.parse(e.target.responseText);
+					cachedTranslations = JSON.parse(e.target.responseText);
 				}
 
 				resolve();

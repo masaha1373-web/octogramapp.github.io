@@ -5,82 +5,82 @@ let connectedWorkers = {};
 let forceCloseTimeouts = {};
 
 function registerDatacenterPing(dcId, callbackState) {
-  dcId = String(dcId);
+	dcId = String(dcId);
 
-  if (typeof dcIdCallbackStates[dcId] == 'undefined') {
-    dcIdCallbackStates[dcId] = [];
-  }
+	if (typeof dcIdCallbackStates[dcId] == 'undefined') {
+		dcIdCallbackStates[dcId] = [];
+	}
 
-  dcIdCallbackStates[dcId].push(callbackState);
+	dcIdCallbackStates[dcId].push(callbackState);
 
-  if (typeof connectedWorkers[dcId] == 'undefined') {
-    connectedWorkers[dcId] = 0;
-    initWorkerForDcId(dcId);
-  }
+	if (typeof connectedWorkers[dcId] == 'undefined') {
+		connectedWorkers[dcId] = 0;
+		initWorkerForDcId(dcId);
+	}
 
-  connectedWorkers[dcId].postMessage({
-    intent: 'ping',
-    dcId: dcId,
-    authKey: getCurrentAuthKey(dcId),
-  });
+	connectedWorkers[dcId].postMessage({
+		intent: 'ping',
+		dcId: dcId,
+		authKey: getCurrentAuthKey(dcId),
+	});
 }
 
 function initWorkerForDcId(dcId) {
-  const worker = new Worker('/assets/lib/connectivity-worker.js', { type: 'module' });
-  connectedWorkers[dcId] = worker;
+	const worker = new Worker('/assets/lib/connectivity-worker.js', { type: 'module' });
+	connectedWorkers[dcId] = worker;
 
-  worker.addEventListener('message', (e) => {
-    if (typeof e.data == 'object') {
-      if (typeof e.data['status'] == 'string') {
-        for (const callback of dcIdCallbackStates[dcId]) {
-          callback(e.data);
-        }
-      } else if (typeof e.data['intent'] == 'string') {
-        if (e.data['intent'] === 'save_auth_key') {
-          if (!(e.data['authKey'] instanceof Uint8Array)) {
-            return;
-          }
+	worker.addEventListener('message', (e) => {
+		if (typeof e.data == 'object') {
+			if (typeof e.data['status'] == 'string') {
+				for (const callback of dcIdCallbackStates[dcId]) {
+					callback(e.data);
+				}
+			} else if (typeof e.data['intent'] == 'string') {
+				if (e.data['intent'] === 'save_auth_key') {
+					if (!(e.data['authKey'] instanceof Uint8Array)) {
+						return;
+					}
 
-          localStorage.setItem(composeAuthKeyStorage(dcId), encodeBase64(e.data['authKey']));
-        } else if (e.data['intent'] === 'kill_done') {
-          worker.terminate();
+					localStorage.setItem(composeAuthKeyStorage(dcId), encodeBase64(e.data['authKey']));
+				} else if (e.data['intent'] === 'kill_done') {
+					worker.terminate();
 
-          if (typeof forceCloseTimeouts[dcId] != 'undefined') {
-            clearTimeout(forceCloseTimeouts[dcId]);
-            forceCloseTimeouts[dcId] = undefined;
-          }
-        }
-      }
-    }
-  });
+					if (typeof forceCloseTimeouts[dcId] != 'undefined') {
+						clearTimeout(forceCloseTimeouts[dcId]);
+						forceCloseTimeouts[dcId] = undefined;
+					}
+				}
+			}
+		}
+	});
 }
 
 function killDatacenterConnection() {
-  for (const [dcId, worker] of Object.entries(connectedWorkers)) {
-    worker.postMessage('kill');
+	for (const [dcId, worker] of Object.entries(connectedWorkers)) {
+		worker.postMessage('kill');
 
-    forceCloseTimeouts[dcId] = setTimeout(() => worker.terminate(), 4000);
-  }
+		forceCloseTimeouts[dcId] = setTimeout(() => worker.terminate(), 4000);
+	}
 
-  dcIdCallbackStates = {};
-  connectedWorkers = {};
+	dcIdCallbackStates = {};
+	connectedWorkers = {};
 }
 
 function composeAuthKeyStorage(dcId) {
-  return `octogram.mtproto.regAuthKey.${dcId}`;
+	return `octogram.mtproto.regAuthKey.${dcId}`;
 }
 
 function getCurrentAuthKey(dcId) {
-  let authKey;
-  const currentAuthKey = localStorage.getItem(composeAuthKeyStorage(dcId));
-  if (currentAuthKey) {
-    authKey = decodeBase64(currentAuthKey);
-  }
+	let authKey;
+	const currentAuthKey = localStorage.getItem(composeAuthKeyStorage(dcId));
+	if (currentAuthKey) {
+		authKey = decodeBase64(currentAuthKey);
+	}
 
-  return authKey;
+	return authKey;
 }
 
 export {
-  registerDatacenterPing,
-  killDatacenterConnection,
+	registerDatacenterPing,
+	killDatacenterConnection,
 };

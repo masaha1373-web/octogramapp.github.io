@@ -11,50 +11,12 @@ let precachedResponse;
 let downloadContent;
 let downloadFiles;
 
+let particlesWorker;
+let particlesCanvas;
+let particlesOnResizeTimeout;
+
 let killedStarsAnimation = false;
 let downloadsViewElement;
-
-class Star {
-	#ctx;
-	#centerX;
-	#centerY;
-
-	constructor(ctx, centerX, centerY) {
-		this.#ctx = ctx;
-		this.#centerX = centerX;
-		this.#centerY = centerY;
-		this.reset();
-	}
-
-	reset() {
-		this.x = this.#centerX;
-		this.y = this.#centerY;
-		const angle = Math.random() * Math.PI * 2;
-		const speed = Math.random() * 2;
-		this.vx = Math.cos(angle) * speed;
-		this.vy = Math.sin(angle) * speed;
-		this.alpha = 1;
-		this.size = 0.3 + Math.random();
-		this.distance = 0;
-	}
-
-	update() {
-		this.x += this.vx;
-		this.y += this.vy;
-		this.distance += Math.sqrt(this.vx**2 + this.vy**2);
-		this.alpha -= 0.005; // fade out
-		if (this.alpha <= 0 || this.x < 0 || this.x > this.#centerX * 2 || this.y < 0 || this.y > this.#centerY * 2) {
-			this.reset();
-		}
-	}
-
-	draw() {
-		this.#ctx.beginPath();
-		this.#ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-		this.#ctx.fillStyle = `rgba(61, 53, 139, ${this.alpha})`;
-		this.#ctx.fill();
-	}
-}
 
 function init() {
 	clearPage(id, () => destroy());
@@ -74,12 +36,48 @@ function init() {
 	pageContainer.appendChild(footer.createElement());
 
 	document.body.appendChild(pageContainer);
-
+	
 	loadVersions();
+	
+	if (!particlesWorker) {
+		particlesWorker = new Worker('/assets/lib/particles-worker.js', { type: 'module' });
+	}
+	
+	window.addEventListener('resize', onResize);
+	
+	const canvasBoundingRect = particlesCanvas.getBoundingClientRect();
+	particlesCanvas.width = canvasBoundingRect.width;
+	particlesCanvas.height = canvasBoundingRect.height;
+	
+	const offscreen = particlesCanvas.transferControlToOffscreen();
+	particlesWorker.postMessage({ canvas: offscreen }, [offscreen]);
 }
 
 function destroy() {
-	killedStarsAnimation = true;
+	if (particlesWorker) {
+		particlesWorker.postMessage({ canvas: false });
+	}
+	if (particlesOnResizeTimeout) {
+		clearTimeout(particlesOnResizeTimeout);
+		particlesOnResizeTimeout = null;
+	}
+	window.removeEventListener('resize', onResize);
+	particlesCanvas = undefined;
+}
+
+function onResize() {
+	if (particlesWorker) {
+		if (particlesOnResizeTimeout) {
+			clearTimeout(particlesOnResizeTimeout);
+		}
+
+		particlesWorker.postMessage({ canvas: false });
+		
+		particlesOnResizeTimeout = setTimeout(() => {
+			const canvasBoundingRect = particlesCanvas.getBoundingClientRect();
+			particlesWorker.postMessage({ resize: true, width: canvasBoundingRect.width, height: canvasBoundingRect.height });
+		}, 300);
+	}
 }
 
 function generateIntroduction() {
@@ -87,6 +85,7 @@ function generateIntroduction() {
 	appBanner.classList.add('app-banner');
 	const canvas = document.createElement('canvas');
 	appBanner.appendChild(canvas);
+	particlesCanvas = canvas;
 	const appLogo = document.createElement('div');
 	appLogo.classList.add('app-logo');
 	const img = document.createElement('img');
@@ -149,26 +148,6 @@ function generateIntroduction() {
 	introduction.classList.add('introduction');
 	introduction.appendChild(background);
 	introduction.appendChild(introductionContent);
-
-	const context = canvas.getContext('2d');
-	const centerX = canvas.width / 2;
-	const centerY = canvas.height / 2;
-	const stars = Array.from({ length: 200 }, () => new Star(context, centerX, centerY));
-
-	function animate() {
-		context.clearRect(0, 0, canvas.width, canvas.height);
-		if (!killedStarsAnimation) {
-			for (const star of stars) {
-				star.update();
-				star.draw();
-			}
-			requestAnimationFrame(animate);
-		} else {
-			killedStarsAnimation = false;
-		}
-	}
-
-	animate();
 
 	return introduction;
 }

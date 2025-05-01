@@ -72,13 +72,13 @@ body > .page > .introduction .content .app-banner canvas {
 body > .page > .introduction .content .app-banner .app-logo {
   background: rgb(38, 29, 128);
   border-radius: 50%;
-  padding: 1.5vw;
+  padding: 40px;
   z-index: 0;
 }
 
 body > .page > .introduction .content .app-banner .app-logo img {
-  height: 25vh;
-  width: 25vh;
+  height: min(200px, 25vw);
+  width: min(200px, 25vw);
   filter: invert(1);
 }
 

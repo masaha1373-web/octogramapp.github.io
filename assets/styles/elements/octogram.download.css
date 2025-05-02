@@ -3,7 +3,6 @@ body > .page > .download {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 50px;
 }
 
 body > .page > .download .content {

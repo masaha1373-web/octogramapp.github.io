@@ -219,7 +219,7 @@ function generateFeatures() {
 	leftPartSticker.src = '/assets/animations/_027_BG_red_OUT.json';
 	const leftPartTitle = document.createElement('div');
 	leftPartTitle.classList.add('title');
-	leftPartTitle.innerHTML = fixInjectionTags('All the\n<b>customizations</b>\nyou like.');
+	leftPartTitle.innerHTML = fixInjectionTags(getStringRef('FT_T'));
 	const leftPart = document.createElement('div');
 	leftPart.classList.add('left-part');
 	leftPart.appendChild(leftPartSticker);
@@ -255,13 +255,10 @@ function createDeviceWithMockup(image) {
 	const realImage = document.createElement('img');
 	realImage.classList.add('real-image');
 	realImage.src = '/assets/images/'+image;
-	const cameraHole = document.createElement('div');
-	cameraHole.classList.add('camera-hole');
 	const featureImage = document.createElement('div');
 	featureImage.classList.add('device-image');
 	featureImage.appendChild(shadow);
 	featureImage.appendChild(realImage);
-	featureImage.appendChild(cameraHole);
 	return featureImage;
 }
 

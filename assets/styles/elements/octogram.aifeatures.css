@@ -127,7 +127,7 @@ body > .page > .features .features-container .features-list .feature.from-bottom
 }
 
 body > .page > .features .features-container .features-list .feature .feature-image .real-image {
-    --init: 12px;
+    --init: 4%;
     margin-left: var(--init);
     width: calc(100% - var(--init) * 2);
     height: auto;

@@ -108,8 +108,6 @@ body > .page > .features-standard .content .right-part {
 body > .page > .features-standard .content .right-part .device-image {
     width: 100%;
     position: relative;
-    border: min(8px, 0.5vw) solid black;
-    border-radius: 25px;
 }
 
 body > .page > .features-standard .content .right-part .device-image .shadow {
@@ -117,8 +115,14 @@ body > .page > .features-standard .content .right-part .device-image .shadow {
     height: 50%;
     background: linear-gradient(90deg, rgba(0, 0, 0, 0.4) 20%, transparent, transparent);
     width: 100%;
-    transform: rotate(45deg) translateX(42%) translateY(-18%);
+    transform: rotate(45deg) translateX(50%) translateY(-12%);
     z-index: -1;
+}
+
+@media screen and (max-width: 1000px) {
+    body > .page > .features-standard .content .right-part .device-image .shadow {
+        display: none;
+    }
 }
 
 body > .page > .features-standard .content .right-part .device-image:first-child {
@@ -129,38 +133,12 @@ body > .page > .features-standard .content .right-part .device-image:nth-child(3
     transform: translateY(10%);
 }
 
+body > .page > .features-standard .content .right-part .device-image img.real-image {
+    width: 100%;
+}
+
 @media screen and (max-width: 1000px) {
     body > .page > .features-standard .content .right-part .device-image {
         transform: scale(1.8);
-        border: 5px solid black;
-        overflow: hidden;
-    }
-
-    body > .page > .features-standard .content .right-part .device-image img.real-image {
-        border-radius: 0;
-    }
-}
-
-body > .page > .features-standard .content .right-part .device-image img.real-image {
-    width: 100%;
-    border-radius: 17px;
-}
-
-body > .page > .features-standard .content .right-part .device-image .camera-hole {
-    position: absolute;
-    top: 4px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 12px;
-    height: 12px;
-    background: black;
-    border-radius: 50%;
-}
-
-@media screen and (max-width: 1000px) {
-    body > .page > .features-standard .content .right-part .device-image .camera-hole {
-        width: 5%;
-        aspect-ratio: 1;
-        height: auto;
     }
 }

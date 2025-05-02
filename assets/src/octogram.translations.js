@@ -72,6 +72,8 @@ const TRANSLATIONS_REF = {
 	AI_FEAT_2_DESC: 'Automatically use past messages to boost replies. Use Ask on Media to get instant insights from photos, videos, and more.',
 	AI_FEAT_3: 'Create your own AI. Unlimited possibilities.',
 	AI_FEAT_3_DESC: 'Design fully customizable models with your own prompts. Tailor OctoGram AI to your unique style and needs.',
+	
+	FT_T: 'All the\n<b>customizations</b>\nyou like.',
 
 	DOWNLOAD_TITLE: 'The experience begins',
 	DOWNLOAD_DESCRIPTION: 'Download the Direct version to get direct updates from the OctoGram team.',

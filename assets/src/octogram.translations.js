@@ -64,6 +64,14 @@ const TRANSLATIONS_REF = {
 	CHANGELOG_DOWNLOAD_SUBTITLE_SUGGESTION: 'The {0} version should be the most suitable and stable one for your device.',
 	CHANGELOG_DOWNLOAD_SELECT: 'Select your option',
 	CHANGELOG_DOWNLOAD_BUTTON: 'Download',
+	
+	AI_TITLE: 'Now with AI',
+	AI_FEAT_1: 'So many providers. Total freedom.',
+	AI_FEAT_1_DESC: 'Access the power of Gemini, ChatGPT, and OpenRouter — all in one place, ready when you need them most.',
+	AI_FEAT_2: 'Chat smarter with real context.',
+	AI_FEAT_2_DESC: 'Automatically use past messages to boost replies. Use Ask on Media to get instant insights from photos, videos, and more.',
+	AI_FEAT_3: 'Create your own AI. Unlimited possibilities.',
+	AI_FEAT_3_DESC: 'Design fully customizable models with your own prompts. Tailor OctoGram AI to your unique style and needs.',
 
 	DOWNLOAD_TITLE: 'The experience begins',
 	DOWNLOAD_DESCRIPTION: 'Download the Direct version to get direct updates from the OctoGram team.',

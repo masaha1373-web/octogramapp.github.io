@@ -1,0 +1,166 @@
+body > .page > .features-standard {
+    min-height: max(1100px, 40vh);
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+body > .page > .features-standard .background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: #4062bb;
+    background-image: linear-gradient(316deg, #08040e 0%, #150738 74%);
+}
+
+body > .page > .features-standard .waves {
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+}
+
+body > .page > .features-standard .waves svg {
+    position: absolute;
+    left: 0;
+    transform: scaleY(0.5) translateY(52%);
+}
+
+body > .page > .features-standard .waves svg.top-1 {
+    top: 0;
+    transform: scaleY(0.5) translateY(-70%) rotate(180deg);
+}
+
+body > .page > .features-standard .waves svg:not(.top-1) {
+    bottom: 0;
+}
+
+body > .page > .features-standard .content {
+    width: min(95vw, 1200px);
+    max-width: min(95vw, 1200px);
+    min-height: 800px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    gap: 150px;
+}
+
+@media screen and (max-width: 1000px) {
+    body > .page > .features-standard .content {
+        flex-direction: column;
+    }
+}
+
+body > .page > .features-standard .content .left-part lottie-player {
+    height: 170px;
+    width: 170px;
+    margin-bottom: 20px;
+}
+
+body > .page > .features-standard .content .left-part .title {
+    line-height: 40px;
+    color: #FFFFFF;
+    font-size: 2.5em;
+    font-weight: 600;
+}
+
+@media screen and (max-width: 1000px) {
+    body > .page > .features-standard .content .left-part {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    body > .page > .features-standard .content .left-part .title {
+        text-align: center;
+    }
+}
+
+body > .page > .features-standard .content .left-part .title .bold {
+    color: #695bf5;
+}
+
+body > .page > .features-standard .content .right-part {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+}
+
+@media screen and (max-width: 1000px) {
+    body > .page > .features-standard .content .right-part {
+        max-width: min(500px, 100vw);
+    }
+}
+
+body > .page > .features-standard .content .right-part .device-image {
+    width: 100%;
+    position: relative;
+    border: min(8px, 0.5vw) solid black;
+    border-radius: 25px;
+}
+
+body > .page > .features-standard .content .right-part .device-image .shadow {
+    position: absolute;
+    height: 50%;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.4) 20%, transparent, transparent);
+    width: 100%;
+    transform: rotate(45deg) translateX(42%) translateY(-18%);
+    z-index: -1;
+}
+
+body > .page > .features-standard .content .right-part .device-image:first-child {
+    transform: translateY(-10%);
+}
+
+body > .page > .features-standard .content .right-part .device-image:nth-child(3) {
+    transform: translateY(10%);
+}
+
+@media screen and (max-width: 1000px) {
+    body > .page > .features-standard .content .right-part .device-image {
+        transform: scale(1.8);
+        border: 5px solid black;
+        overflow: hidden;
+    }
+
+    body > .page > .features-standard .content .right-part .device-image img.real-image {
+        border-radius: 0;
+    }
+}
+
+body > .page > .features-standard .content .right-part .device-image img.real-image {
+    width: 100%;
+    border-radius: 17px;
+}
+
+body > .page > .features-standard .content .right-part .device-image .camera-hole {
+    position: absolute;
+    top: 4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 12px;
+    height: 12px;
+    background: black;
+    border-radius: 50%;
+}
+
+@media screen and (max-width: 1000px) {
+    body > .page > .features-standard .content .right-part .device-image .camera-hole {
+        width: 5%;
+        aspect-ratio: 1;
+        height: auto;
+    }
+}

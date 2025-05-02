@@ -9,6 +9,7 @@ body > .page > .download {
 body > .page > .download .content {
   position: relative;
   overflow: hidden;
+  min-height: max(400px, 30vh);
   max-width: min(95vw, 1400px);
   width: 100%;
   display: flex;
@@ -40,6 +41,7 @@ body > .page > .download .content .message .title {
   color: #FFFFFF;
   font-size: 2.3em;
   font-weight: 600;
+  text-align: center;
 }
 
 body > .page > .download .content .message .description {

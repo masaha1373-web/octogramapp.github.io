@@ -1,4 +1,4 @@
-import {calculateSize, clearPage, generateWaveGradient} from "./octogram.utils.js";
+import {calculateSize, clearPage, fixInjectionTags, generateWaveGradient} from "./octogram.utils.js";
 import * as header from "./octogram.header.js";
 import {getStringRef} from "./octogram.translations.js";
 import * as footer from "./octogram.footer.js";
@@ -32,6 +32,8 @@ function init() {
 		isHomePage: true
 	}));
 	pageContainer.appendChild(generateIntroduction());
+	pageContainer.appendChild(generateAiFeatures());
+	pageContainer.appendChild(generateFeatures());
 	pageContainer.appendChild(downloadsViewElement = generateDownload());
 	pageContainer.appendChild(footer.createElement());
 
@@ -105,9 +107,9 @@ function generateIntroduction() {
 	actions.className = 'actions';
 
 	const links = [
-		{ id: 1, text: 'Privacy Policy' },
-		{ id: 2, text: 'News' },
-		{ id: 3, text: 'Downloads' },
+		{ id: 1, text: getStringRef('PRIVACYPOLICY_TITLE_PAGE') },
+		{ id: 2, text: getStringRef('FOOTER_SITE_CHANGELOG') },
+		{ id: 3, text: getStringRef('HEADER_DOWNLOAD') },
 	];
 
 	links.forEach(linkData => {
@@ -128,14 +130,8 @@ function generateIntroduction() {
 	});
 
 	const background = document.createElement('div');
-	background.className = 'background';
-
-	background.appendChild(generateWaveGradient('#0f031e', false));
-
-	const second = generateWaveGradient('#0f031e', true);
-	second.classList.remove('btm-1');
-	second.classList.add('top-1');
-	background.appendChild(second);
+	background.classList.add('background');
+	initBackground(background);
 
 	const introductionContent = document.createElement('div');
 	introductionContent.classList.add('content');
@@ -150,6 +146,132 @@ function generateIntroduction() {
 	introduction.appendChild(introductionContent);
 
 	return introduction;
+}
+
+function generateAiFeatures() {
+	const lampIcon = document.createElement('lottie-player');
+	lampIcon.toggleAttribute('loop');
+	lampIcon.toggleAttribute('autoplay');
+	lampIcon.src = '/assets/animations/_0-1_SPARKS.json';
+	const messageTitle = document.createElement('div');
+	messageTitle.classList.add('title');
+	messageTitle.textContent = getStringRef('AI_TITLE');
+	messageTitle.appendChild(lampIcon);
+	
+	const featuresList = document.createElement('div');
+	featuresList.classList.add('features-list');
+	featuresList.appendChild(createFeature(getStringRef('AI_FEAT_1'), getStringRef('AI_FEAT_1_DESC'), 'ManyProvidersFeat1.png'));
+	featuresList.appendChild(createFeature(getStringRef('AI_FEAT_2'), getStringRef('AI_FEAT_2_DESC'), 'ChatContextFeat2.png'));
+	featuresList.appendChild(createFeature(getStringRef('AI_FEAT_3'), getStringRef('AI_FEAT_3_DESC'), 'CustomModelsFeat3.png', true));
+	
+	const featuresContainer = document.createElement('div');
+	featuresContainer.classList.add('features-container');
+	featuresContainer.appendChild(messageTitle);
+	featuresContainer.appendChild(featuresList);
+	
+	const features = document.createElement('div');
+	features.classList.add('features');
+	features.appendChild(featuresContainer);
+	
+	return features;
+}
+
+function createFeature(title, description, image, fromBottom = false) {
+	const featureTitle = document.createElement('div');
+	featureTitle.classList.add('feature-title');
+	featureTitle.textContent = title;
+	
+	const featureDescription = document.createElement('div');
+	featureDescription.classList.add('feature-description');
+	featureDescription.textContent = description;
+	
+	const shadow = document.createElement('div');
+	shadow.classList.add('shadow');
+	const realImage = document.createElement('img');
+	realImage.classList.add('real-image');
+	realImage.src = '/assets/images/'+image;
+	const deviceFrame = document.createElement('img');
+	deviceFrame.classList.add('frame');
+	deviceFrame.src = '/assets/images/DeviceFrameTelegram.Android.svg';
+	const featureImage = document.createElement('div');
+	featureImage.classList.add('feature-image');
+	featureImage.appendChild(shadow);
+	featureImage.appendChild(realImage);
+	featureImage.appendChild(deviceFrame);
+	
+	const feature = document.createElement('div');
+	feature.classList.add('feature');
+	feature.classList.toggle('from-bottom', fromBottom);
+	feature.appendChild(featureTitle);
+	feature.appendChild(featureDescription);
+	feature.appendChild(featureImage);
+	
+	return feature;
+}
+
+function generateFeatures() {
+	const background = document.createElement('div');
+	background.classList.add('background');
+	
+	const leftPartSticker = document.createElement('lottie-player');
+	leftPartSticker.toggleAttribute('autoplay');
+	leftPartSticker.toggleAttribute('loop');
+	leftPartSticker.src = '/assets/animations/_027_BG_red_OUT.json';
+	const leftPartTitle = document.createElement('div');
+	leftPartTitle.classList.add('title');
+	leftPartTitle.innerHTML = fixInjectionTags('All the\n<b>customizations</b>\nyou like.');
+	const leftPart = document.createElement('div');
+	leftPart.classList.add('left-part');
+	leftPart.appendChild(leftPartSticker);
+	leftPart.appendChild(leftPartTitle);
+	
+	const rightPart = document.createElement('div');
+	rightPart.classList.add('right-part');
+	rightPart.appendChild(createDeviceWithMockup('AppearanceGen1.png'));
+	rightPart.appendChild(createDeviceWithMockup('AppearanceGen2.png'));
+	rightPart.appendChild(createDeviceWithMockup('AppearanceGen3.png'));
+	
+	const featuresContent = document.createElement('div');
+	featuresContent.classList.add('content');
+	featuresContent.appendChild(leftPart);
+	featuresContent.appendChild(rightPart);
+	
+	const upperWaves = document.createElement('div');
+	upperWaves.classList.add('waves');
+	initBackground(upperWaves);
+	
+	const features = document.createElement('div');
+	features.classList.add('features-standard');
+	features.appendChild(background);
+	features.appendChild(featuresContent);
+	features.appendChild(upperWaves);
+	
+	return features;
+}
+
+function createDeviceWithMockup(image) {
+	const shadow = document.createElement('div');
+	shadow.classList.add('shadow');
+	const realImage = document.createElement('img');
+	realImage.classList.add('real-image');
+	realImage.src = '/assets/images/'+image;
+	const cameraHole = document.createElement('div');
+	cameraHole.classList.add('camera-hole');
+	const featureImage = document.createElement('div');
+	featureImage.classList.add('device-image');
+	featureImage.appendChild(shadow);
+	featureImage.appendChild(realImage);
+	featureImage.appendChild(cameraHole);
+	return featureImage;
+}
+
+function initBackground(background) {
+	background.appendChild(generateWaveGradient('#0f031e', false));
+
+	const second = generateWaveGradient('#0f031e', true);
+	second.classList.remove('btm-1');
+	second.classList.add('top-1');
+	background.appendChild(second);
 }
 
 function generateDownload() {

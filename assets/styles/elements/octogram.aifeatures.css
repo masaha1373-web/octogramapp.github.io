@@ -1,0 +1,161 @@
+body > .page > .features {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 60px;
+}
+
+body > .page > .features .features-container {
+    width: min(95vw, 1200px);
+    max-width: min(95vw, 1200px);
+}
+
+body > .page > .features .features-container .title {
+    color: #FFFFFF;
+    font-size: 2.3em;
+    font-weight: 600;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+body > .page > .features .features-container .title lottie-player {
+    width: 30px;
+    height: 30px;
+}
+
+body > .page > .features .features-container .features-list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+@media screen and (max-width: 900px) {
+    body > .page > .features .features-container .features-list {
+        flex-direction: column;
+    }
+}
+
+body > .page > .features .features-container .features-list .feature {
+    flex: 1;
+    background: #12062a;
+    min-height: 700px;
+    padding: 30px;
+    border-radius: 15px;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+}
+
+@media screen and (max-width: 1200px) and (min-width: 900px) {
+    body > .page > .features .features-container .features-list .feature {
+        min-height: 650px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    body > .page > .features .features-container .features-list .feature {
+        min-height: 550px;
+    }
+}
+
+@media screen and (max-width: 900px) and (min-width: 600px) {
+    body > .page > .features .features-container .features-list .feature {
+        max-width: 500px;
+    }
+}
+
+body > .page > .features .features-container .features-list .feature.from-bottom {
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+}
+
+body > .page > .features .features-container .features-list .feature .feature-title {
+    color: #695bf5;
+    font-size: 1.5em;
+    font-weight: 600;
+}
+
+body > .page > .features .features-container .features-list .feature .feature-description {
+    margin-top: 15px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.2em;
+    line-height: 25px;
+}
+
+body > .page > .features .features-container .features-list .feature .feature-image {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70%;
+}
+
+@media screen and (max-width: 900px) and (min-width: 600px) {
+    body > .page > .features .features-container .features-list .feature .feature-image {
+        width: 300px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    body > .page > .features .features-container .features-list .feature .feature-image {
+        width: 200px;
+    }
+}
+
+body > .page > .features .features-container .features-list .feature:not(.from-bottom) .feature-image {
+    bottom: 0;
+}
+
+body > .page > .features .features-container .features-list .feature.from-bottom .feature-image {
+    top: 0;
+}
+
+body > .page > .features .features-container .features-list .feature .feature-image .shadow {
+    position: absolute;
+    height: 50%;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.4), transparent);
+    width: 100%;
+    transform: rotate(45deg) translateX(59%) translateY(-20%);
+    z-index: -1;
+}
+
+body > .page > .features .features-container .features-list .feature.from-bottom .feature-image .shadow {
+    display: none;
+}
+
+body > .page > .features .features-container .features-list .feature .feature-image .real-image {
+    --init: 12px;
+    margin-left: var(--init);
+    width: calc(100% - var(--init) * 2);
+    height: auto;
+    box-shadow: 0 0 42px 9px black;
+}
+
+body > .page > .features .features-container .features-list .feature:not(.from-bottom) .feature-image .real-image {
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    margin-top: var(--init);
+}
+
+body > .page > .features .features-container .features-list .feature.from-bottom .feature-image .real-image {
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    margin-bottom: var(--init);
+}
+
+body > .page > .features .features-container .features-list .feature .feature-image .frame {
+    position: absolute;
+    left: 0;
+    width: 100%;
+}
+
+body > .page > .features .features-container .features-list .feature:not(.from-bottom) .feature-image .frame {
+    top: 0;
+}
+
+body > .page > .features .features-container .features-list .feature.from-bottom .feature-image .frame {
+    bottom: 0;
+}

@@ -107,6 +107,7 @@ body > .page > .introduction .content .actions {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
   gap: 7px;
   transform: scale(0.8);
   opacity: 0;

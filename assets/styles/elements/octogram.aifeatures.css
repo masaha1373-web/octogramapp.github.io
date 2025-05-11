@@ -101,7 +101,14 @@ body > .page > .features .features-container .features-list .feature .feature-im
 
 @media screen and (max-width: 600px) {
     body > .page > .features .features-container .features-list .feature .feature-image {
-        width: 200px;
+        width: 220px;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    body > .page > .features .features-container .features-list .feature:not(.from-bottom) .feature-image {
+        position: relative;
+        transform: translateX(-50%) translateY(15%);
     }
 }
 
